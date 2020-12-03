@@ -1,0 +1,24 @@
+#title {
+    background: green;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    padding-top: 3rem;
+}
+#login-info {
+    padding-top: 2rem;
+}
+#login-form-container {
+    display: flex;
+    justify-content: center;
+}
+#sign-up-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+input {
+    padding: 1rem;
+    margin: 1rem;
+    width: 100%;
+}

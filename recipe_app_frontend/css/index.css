@@ -1,0 +1,25 @@
+body {
+    background: rgb(15, 78, 15);
+}
+#greeting {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    padding-top: 5rem;
+}
+#login-info {
+    padding-top: 2rem;
+}
+#login-form-container {
+    display: flex;
+    justify-content: center;
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    padding: 1rem;
+    margin: 1rem;
+    width: 100%;
+}
