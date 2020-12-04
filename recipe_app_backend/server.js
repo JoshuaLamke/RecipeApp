@@ -30,12 +30,9 @@ app.get("/",(req, res, next) => {
 // Get a user based on email and password
 // Used for getting user info after they log in to the app
 app.get("/api/user/:email/:password", (req, res) => {
-    console.log(req.params.password);
-    console.log(req.params.email);
     let sql = "SELECT * FROM user WHERE email = ? AND password = ?";
     let params = [req.params.email, md5(req.params.password)];
-    let data;
-    db.all(sql, params, (err, row) => {
+    db.get(sql, params, (err, row) => {
         if(err) {
             res.status(400).json({"error": err.message});
             return;
@@ -53,26 +50,6 @@ app.get("/api/user/:email/:password", (req, res) => {
             }
         }
     })
-})
-
-// Get recipes useing a user's id 
-// Used to load the recipies for the user after they log in
-app.get("/api/recipes/:id", (req, res) => {
-    let sql = "SELECT * FROM recipe WHERE userId = ?";
-    let params = [req.params.id];
-    db.all(sql, params, (err, rows) => {
-        if(err) {
-            res.status(400).json({
-                "error": err
-            });
-            return;
-        }
-        else{
-            res.json({
-                "recipes": rows
-            });
-        }
-    });
 })
 
 // Get user based on the user's id 
@@ -152,6 +129,69 @@ app.post("/api/user/", (req, res) => {
     }
 })
 
+// Delete a User
+// Used when the user wants to delete their account, pass in their username and password to delete
+app.delete("/api/user/:email/:password", (req, res) => {
+    db.get("PRAGMA foreign_keys = ON");
+    let sql = "DELETE FROM user WHERE email = ? AND password = ?";
+    let params = [req.params.email, md5(req.params.password)];
+    db.run(sql, params, function(err) {
+        if(err) {
+            res.status(400).json({
+                "error": err.message
+            });
+        }
+        else {
+            if(this.changes != 0){
+                res.json({
+                    "Message": "Account successfully deleted."
+                });
+            }
+            else{
+                res.status(400).json({
+                    "Message": "Incorrect username or password."
+                });
+            }
+        }
+    })
+});
+
+// Get recipes using a user's id 
+// Used to load the recipies for the user after they log in
+app.get("/api/recipes/:id", (req, res) => {
+    let sql = "SELECT * FROM recipe WHERE userId = ?";
+    let params = [req.params.id];
+    db.all(sql, params, (err, rows) => {
+        if(err) {
+            res.status(400).json({
+                "error": err
+            });
+            return;
+        }
+        else{
+            res.json({
+                "recipes": rows
+            });
+        }
+    });
+})
+
+// Get all recipes
+app.get("/api/recipes", (req, res) => {
+    var sql = "SELECT * FROM recipe"
+    var params = []
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+          res.status(400).json({"error":err.message});
+          return;
+        }
+        res.json({
+            "message":"success",
+            "data":rows
+        })
+      });
+});
+
 // Create a new recipe
 // Used when the user wants to save a new recipe
 app.post("/api/recipe/", (req, res) => {
@@ -207,6 +247,50 @@ app.post("/api/recipe/", (req, res) => {
             }
         })
     }
+})
+
+// Deletes a recipe based on the id
+// Used for when a user wants to delete a certain recipe
+app.delete("/api/recipe/:id", (req, res) => {
+    let sql = "DELETE FROM recipe WHERE id = ?";
+    let params = [req.params.id];
+    db.run(sql, params, function(err) {
+        if(err) {
+            res.status(400).json({
+                "Error": err.message
+            });
+        }
+        else{
+            if(this.changes != 0) {
+                res.json({
+                    "Message": "Recipe was deleted"
+                });
+            }
+            else {
+                res.status(400).json({
+                    "Message": "Input correct recipe id"
+                });
+            }
+        }
+    })
+})
+
+// Deletes all recipes in the database
+app.delete("/api/recipes", (req, res) => {
+    let sql = "DELETE FROM recipe";
+    let params = [];
+    db.run(sql, params, function(err) {
+        if(err) {
+            res.status(400).json({
+                "Error": err.message
+            });
+        }
+        else {
+            res.json({
+                "Message": `${this.changes} recipes deleted`
+            });
+        }
+    })
 })
 
 // All other endpoints should give 404 status
