@@ -25,9 +25,12 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 type text,
                 servingAmount INTEGER,
                 ingredients text,
-                directions text
+                directions text,
+                FOREIGN KEY (userId)
+                REFERENCES user(id)
+                ON DELETE CASCADE
                 )`,
-        (err) => {})
+        (err) => {console.log(err)})
 
     }
 });
