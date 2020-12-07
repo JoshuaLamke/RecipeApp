@@ -30,7 +30,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 REFERENCES user(id)
                 ON DELETE CASCADE
                 )`,
-        (err) => {console.log(err)})
+        (err) => {})
 
     }
 });
