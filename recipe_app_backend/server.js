@@ -129,12 +129,51 @@ app.post("/api/user/", (req, res) => {
     }
 })
 
+// Update a User's name. Pass in the new name and the id of the user.
+// Used when the user would like to change their name. Be sure to check if the name is empty and not let them update it like that.
+app.post("/api/user/update", (req, res) => {
+    let name = req.body.name;
+    let id = req.body.id;
+    let sql = "UPDATE user SET name = ? WHERE id = ?";
+    let params = [name, id];
+    db.get(sql, params, (err) => {
+        if(err) {
+            res.status(400).json({
+                "error": err.message
+            })
+        }
+    });
+    sql = "SELECT * FROM user WHERE id = ?";
+    params = [id];
+    db.get(sql, params, (err, row) => {
+        if(err) {
+            res.status(400).json({
+                "error": err.message
+            })
+        }
+        else {
+            if(!row) {
+                res.status(400).json({
+                    "Message": "Input the correct ID"
+                });
+            }
+            else {
+                res.json({
+                    "Message": "User successfully updated.",
+                    "Data": row
+                });
+            }
+        }
+
+    });
+});
+
 // Delete a User
 // Used when the user wants to delete their account, pass in their username and password to delete
-app.delete("/api/user/:email/:password", (req, res) => {
+app.delete("/api/user", (req, res) => {
     db.get("PRAGMA foreign_keys = ON");
     let sql = "DELETE FROM user WHERE email = ? AND password = ?";
-    let params = [req.params.email, md5(req.params.password)];
+    let params = [req.body.email, md5(req.body.password)];
     db.run(sql, params, function(err) {
         if(err) {
             res.status(400).json({
@@ -248,6 +287,40 @@ app.post("/api/recipe/", (req, res) => {
         })
     }
 })
+
+// Updates a recipe based on its id.
+// Use when user wants to update their recipe.
+app.post("/api/recipe/update", (req, res) => {
+    let name = req.body.name;
+    let type = req.body.type;
+    let servingAmount = req.body.servingAmount;
+    let ingredients = req.body.ingredients;
+    let directions = req.body.directions;
+    let id = req.body.id;
+    let sql = "UPDATE recipe SET name = ?, type = ?, servingAmount = ?, ingredients = ?, directions = ? WHERE id = ?";
+    let params = [name, type, servingAmount, ingredients, directions, id];
+    let data = {
+        name: name,
+        type: type,
+        servingAmount: servingAmount,
+        ingredients: ingredients,
+        directions: directions,
+        id: id
+    }
+    db.get(sql, params, (err) => {
+        if(err) {
+            res.status(400).json({
+                "error": err.message
+            })
+        }
+        else {
+            res.json({
+                "Message": "Updated recipe successfully",
+                "Data": data
+            });
+        }
+    });
+});
 
 // Deletes a recipe based on the id
 // Used for when a user wants to delete a certain recipe
