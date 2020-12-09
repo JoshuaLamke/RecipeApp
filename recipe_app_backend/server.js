@@ -8,18 +8,23 @@ let db = require('./database');
 //Require md5 (for password hashing)
 let md5 = require('md5');
 
+//Require jsonwebtoken for authentication
+let jwt = require('jsonwebtoken');
+
+//Require auth method for user authentication with jwt
+let auth = require('./middleware/auth');
+
+//Require dotenv for keeping environment variables
+require('dotenv').config();
+
 //Import body parser for post requests
 let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
-//Define a port
-let port = 8080;
-
 //Start server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}.`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}.`);
 });
 
 //Define root
@@ -29,9 +34,9 @@ app.get("/",(req, res, next) => {
 
 // Get a user based on email and password
 // Used for getting user info after they log in to the app
-app.get("/api/user/:email/:password", (req, res) => {
+app.post("/api/user/login", (req, res) => {
     let sql = "SELECT * FROM user WHERE email = ? AND password = ?";
-    let params = [req.params.email, md5(req.params.password)];
+    let params = [req.body.email, md5(req.body.password)];
     db.get(sql, params, (err, row) => {
         if(err) {
             res.status(400).json({"error": err.message});
@@ -42,10 +47,11 @@ app.get("/api/user/:email/:password", (req, res) => {
                 res.status(404).send({"error": "Could not find user with that login information, try again or sign up."});
             }
             else{
-                data = row;
+                const token = jwt.sign({id: row.id}, process.env.SECRET);
                 res.json({
                     "message": "Success",
-                    "data":row
+                    "data": row,
+                    "Token": token
                 });
             }
         }
@@ -88,7 +94,7 @@ app.get("/api/users", (req, res) => {
 
 // Create a new user
 // Used for creating a new profile when the user signs up
-app.post("/api/user/", (req, res) => {
+app.post("/api/user/signup", (req, res) => {
     let errors = [];
     if(!req.body.password) {
         errors.push("No password specified.");
@@ -119,10 +125,12 @@ app.post("/api/user/", (req, res) => {
                 });
             }
             else{
+                const token = jwt.sign({id: this.lastID}, process.env.SECRET);
                 res.json({
                     "message": "success",
                     "data": data,
-                    "id": this.lastID
+                    "id": this.lastID,
+                    "token": token
                 });
             }
         });
@@ -131,49 +139,29 @@ app.post("/api/user/", (req, res) => {
 
 // Update a User's name. Pass in the new name and the id of the user.
 // Used when the user would like to change their name. Be sure to check if the name is empty and not let them update it like that.
-app.post("/api/user/update", (req, res) => {
-    let name = req.body.name;
-    let id = req.body.id;
+app.post("/api/user/update", auth, (req, res) => {
     let sql = "UPDATE user SET name = ? WHERE id = ?";
-    let params = [name, id];
+    let params = [req.body.name, req.user.id];
     db.get(sql, params, (err) => {
         if(err) {
             res.status(400).json({
                 "error": err.message
             })
         }
-    });
-    sql = "SELECT * FROM user WHERE id = ?";
-    params = [id];
-    db.get(sql, params, (err, row) => {
-        if(err) {
-            res.status(400).json({
-                "error": err.message
+        else{
+            res.json({
+                "Success": `Name updated to ${req.body.name}`
             })
         }
-        else {
-            if(!row) {
-                res.status(400).json({
-                    "Message": "Input the correct ID"
-                });
-            }
-            else {
-                res.json({
-                    "Message": "User successfully updated.",
-                    "Data": row
-                });
-            }
-        }
-
     });
 });
 
 // Delete a User
 // Used when the user wants to delete their account, pass in their username and password to delete
-app.delete("/api/user", (req, res) => {
+app.delete("/api/user/delete", auth, (req, res) => {
     db.get("PRAGMA foreign_keys = ON");
     let sql = "DELETE FROM user WHERE email = ? AND password = ?";
-    let params = [req.body.email, md5(req.body.password)];
+    let params = [req.user.email, req.user.password];
     db.run(sql, params, function(err) {
         if(err) {
             res.status(400).json({
@@ -197,9 +185,9 @@ app.delete("/api/user", (req, res) => {
 
 // Get recipes using a user's id 
 // Used to load the recipies for the user after they log in
-app.get("/api/recipes/:id", (req, res) => {
+app.get("/api/recipes", auth, (req, res) => {
     let sql = "SELECT * FROM recipe WHERE userId = ?";
-    let params = [req.params.id];
+    let params = [req.user.id];
     db.all(sql, params, (err, rows) => {
         if(err) {
             res.status(400).json({
@@ -216,7 +204,7 @@ app.get("/api/recipes/:id", (req, res) => {
 })
 
 // Get all recipes
-app.get("/api/recipes", (req, res) => {
+app.get("/api/allrecipes", (req, res) => {
     var sql = "SELECT * FROM recipe"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -233,12 +221,8 @@ app.get("/api/recipes", (req, res) => {
 
 // Create a new recipe
 // Used when the user wants to save a new recipe
-app.post("/api/recipe/", (req, res) => {
+app.post("/api/recipe/", auth, (req, res) => {
     let errors = [];
-    console.log(req.body);
-    if(!req.body.userId) {
-        errors.push("No user-id specified.");
-    }
     if(!req.body.name) {
         errors.push("No name specified.");
     }
@@ -262,7 +246,7 @@ app.post("/api/recipe/", (req, res) => {
     }
     else {
         let data = {
-            "userId": req.body.userId,
+            "userId": req.user.id,
             "name": req.body.name,
             "type": req.body.type,
             "servingAmount": req.body.servingAmount,
@@ -290,7 +274,7 @@ app.post("/api/recipe/", (req, res) => {
 
 // Updates a recipe based on its id.
 // Use when user wants to update their recipe.
-app.post("/api/recipe/update", (req, res) => {
+app.post("/api/recipe/update", auth, (req, res) => {
     let name = req.body.name;
     let type = req.body.type;
     let servingAmount = req.body.servingAmount;
@@ -324,7 +308,7 @@ app.post("/api/recipe/update", (req, res) => {
 
 // Deletes a recipe based on the id
 // Used for when a user wants to delete a certain recipe
-app.delete("/api/recipe/:id", (req, res) => {
+app.delete("/api/recipe/:id", auth, (req, res) => {
     let sql = "DELETE FROM recipe WHERE id = ?";
     let params = [req.params.id];
     db.run(sql, params, function(err) {
