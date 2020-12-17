@@ -7,7 +7,7 @@ let db = require('./database');
 
 //require cors middleware
 let cors = require('cors') 
-app.use(cors({origin: "", optionsSuccessStatus: 200}))
+app.use(cors())
 
 //Require md5 (for password hashing)
 let md5 = require('md5');
