@@ -19,7 +19,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
                 console.log('Something is not right with login')
             }
             else {
-                location.assign(`/recipe_app_frontend/user.html#${data1.data.id}`)
+                location.assign(`/user.html#${data1.data.id}`)
             }
         })
     })
@@ -27,5 +27,5 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
 
 document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
     e.preventDefault()
-    location.assign('/recipe_app_frontend/signUp.html')
+    location.assign('/signUp.html')
 })
