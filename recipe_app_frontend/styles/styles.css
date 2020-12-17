@@ -1,5 +1,5 @@
 #title {
-    background: green;
+    background:rgb(241, 159, 35);
     display: flex;
     justify-content: center;
     border-bottom: 1px solid black;
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
 }
-#sign-up-form {
+#sign-up-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
