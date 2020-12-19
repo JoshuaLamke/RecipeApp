@@ -4,14 +4,19 @@
 
     </head>
     <body>
-        <h1>Edit Recipe!</h1>
+        <h1>New Recipe!</h1>
         <form id="new-recipe">
             <input id="title-bar" type="text" placeholder="Title">
             <input id="type-bar" type="text" placeholder="Type">
-            <input id="serving-amount-bar" type="text" placeholder="Amount of servings">
+            <input id="serving-amount-bar" type="number" min="1" placeholder="Amount of servings (At least 1)">
             <input id="ingredients-bar" type="text" placeholder="Add Ingredients">
             <input id="directions-bar" type="text" placeholder="Add Directions">
+            <input type="submit" placeholder="Add Recipe">
         </form>
-        <script src="/scripts/edit-recipe.js"></script>
+        <form id="cancel">
+            <input type="submit" value="cancel">
+        </form>
+        <script src="/scripts/app-functions.js"></script>
+        <script src="/scripts/new-recipe.js"></script>
     </body>
 </html>

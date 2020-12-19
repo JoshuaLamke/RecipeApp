@@ -34,7 +34,6 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
                 console.log(actualData.status)
             }
             console.log(actualData)
-            
         })
     })
     const newUserData = {
@@ -50,7 +49,9 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
             if ((data1.status) && data1.status !== 200) {
                 console.log('Something is not right with login')
             }
-            location.assign(`/user.html#${data1.data.id}`)
+            localStorage.setItem("id", data1.data.id)
+            localStorage.setItem("token", JSON.stringify(data1.Token))
+            location.assign(`/user.html`)
         })
     })
 })

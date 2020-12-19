@@ -1,26 +1,33 @@
+const id = location.hash
+const userID = id.split("#").pop()
+let recipeData = {
+    title: '',
+    type: '',
+    servingAmount: '',
+    ingredients: '',
+    directions: ''
+}
 const titleElement = document.querySelector('#title-bar')
 const typeElement = document.querySelector('#type-bar')
 const servingElement = document.querySelector('#serving-amount-bar')
 const ingredientsElement = document.querySelector('#ingredients-bar')
 const directionsElement = document.querySelector('#directions-bar')
-// let notes = getSavedRecipes()
-// let note = notes.find((recipe) => recipe.id === noteID)
 
-//If note is undefined (falsy), then the ! will flip it to true...
-// if (!note){
-//     location.assign('/index.html')
-// }
+document.querySelector('#new-recipe').addEventListener('submit', (e) => {
+    recipeData.title = e.target[0].value
+    recipeData.type = e.target[1].value
+    recipeData.servingAmount = e.target[2].value
+    recipeData.ingredients = e.target[3].value
+    recipeData.directions = e.target[4].value
+    let userID = localStorage.getItem("id")
+    createRecipe(userID, recipeData)
 
-// titleElement.value = note.title
-// bodyElement.value = note.body
+})
 
-// //Set up event listener for the title...
-// titleElement.addEventListener('input', (e) => {
-//     note.title = e.target.value
-//     note.updatedAt = dayjs()
-//     note.updatedTimeStamp = dayjs().valueOf()
-//     saveNotes(notes)
-// })
+document.querySelector("#cancel").addEventListener("submit", (e) => {
+    e.preventDefault()
+    location.assign('/user.html')
+})
 
 // //Set up event listener for the body...
 // bodyElement.addEventListener('input', (e) => {
@@ -53,13 +60,6 @@ const directionsElement = document.querySelector('#directions-bar')
 //         dateElement.textContent = `Last edited on ${dayjs(note.updatedAt).format('MMMM D, YYYY H:m:s')}`
 //     }
 // })
-const recipeData = {
-    name: '',
-    type: '',
-    servingAmount: 0,
-    ingredients: {},
-    directions: ''
-}
 // fetch("http://localhost:8081/api/recipe/", {
 //         method: 'POST',
 //         headers: {"Content-Type": "application/json"},
