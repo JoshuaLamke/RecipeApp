@@ -7,7 +7,7 @@ let db = require('./database');
 
 //require cors middleware
 let cors = require('cors') 
-app.use(cors({origin: "", optionsSuccessStatus: 200}))
+app.use(cors())
 
 //Require md5 (for password hashing)
 let md5 = require('md5');
@@ -41,6 +41,8 @@ app.get("/",(req, res, next) => {
 app.post("/api/user/login", (req, res) => {
     let sql = "SELECT * FROM user WHERE email = ? AND password = ?";
     let params = [req.body.email, md5(req.body.password)];
+    let userInfo;
+    let userId;
     db.get(sql, params, (err, row) => {
         if(err) {
             res.status(400).json({"error": err.message});
@@ -52,14 +54,32 @@ app.post("/api/user/login", (req, res) => {
             }
             else{
                 const token = jwt.sign({id: row.id}, process.env.SECRET);
-                res.json({
+                userId = row.id;
+                userInfo = {
                     "message": "Success",
                     "data": row,
                     "Token": token
+                };
+                sql = "SELECT * FROM recipe WHERE userId = ?";
+                db.all(sql, userId, (err, rows) => {
+                    if(err) {
+                        res.status(400).json({
+                            "error": err
+                        });
+                        return;
+                    }
+                    else{
+                        res.json({
+                            "User info": userInfo,
+                            "User recipes": rows
+                        });
+                    }
                 });
             }
         }
     })
+    
+
 })
 
 // Get user based on the user's id 
