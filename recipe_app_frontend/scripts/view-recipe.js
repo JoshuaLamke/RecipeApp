@@ -35,3 +35,20 @@ fetch('http://localhost:8081/api/recipes', {
         directionsElement.textContent = wantedRecipe.directions
     })
 })
+
+//If the user clicks the delete button it will delete the recipe
+document.querySelector('#recipe-delete').addEventListener('submit', (e) => {
+    e.preventDefault()
+    fetch("http://localhost:8081/api/recipe/" + recipeID, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": "Bearer " + userToken,
+            "Content-Type": "application/json"
+        }
+    }).then((response) => {
+        response.json().then(function (actualResponse) {
+            console.log(actualResponse)
+            location.assign('/user.html')
+        })
+    })
+})
