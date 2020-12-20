@@ -52,3 +52,8 @@ document.querySelector('#recipe-delete').addEventListener('submit', (e) => {
         })
     })
 })
+
+document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
+    e.preventDefault()
+    location.assign(`/edit-recipe.html#${recipeID}`)
+})
