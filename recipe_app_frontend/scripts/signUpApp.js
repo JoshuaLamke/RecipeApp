@@ -4,6 +4,7 @@ fetch('http://localhost:8081/api/users').then((response) => {
          })
 })
 document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
+    e.preventDefault()
     const firstName = e.target[0].value
     const lastName = e.target[1].value
     const email = e.target[2].value
@@ -50,6 +51,7 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
                 console.log('Something is not right with login')
             }
             console.log(data1["User info"])
+            console.log(data1["User info"].data)
             localStorage.setItem("id", data1["User info"].data.id)
             localStorage.setItem("token", data1["User info"].Token)
             location.assign(`/user.html`)
