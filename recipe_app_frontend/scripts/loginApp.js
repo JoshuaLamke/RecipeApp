@@ -19,8 +19,9 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
                 console.log('Something is not right with login')
             }
             else {
-                localStorage.setItem("id", data1.data.id)
-                localStorage.setItem("token", JSON.stringify(data1.Token))
+                console.log(data1["User info"])
+                localStorage.setItem("id", data1["User info"].data.id)
+                localStorage.setItem("token", data1["User info"].Token)
                 location.assign(`/user.html`)
             }
         })

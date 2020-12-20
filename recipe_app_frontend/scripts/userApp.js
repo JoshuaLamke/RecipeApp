@@ -1,8 +1,28 @@
 const userID = localStorage.getItem("id")
 const filters = {
     searchText: '',
-    sortBy: 'byEdited'
+    sortBy: 'alphabetical'
 }
+let userData = {
+    email: '',
+    password: ''
+}
+let userInfo = {}
+fetch('http://localhost:8081/api/user/' + userID).then((response) => {
+        response.json().then(function (actualResponse) {
+            if ((actualResponse.status) && actualResponse.status !== 200) {
+                console.log('Something is not right')
+                console.log(actualResponse.status)
+            }
+            userData.email = actualResponse.data.email
+            userData.password = actualResponse.data.password
+            userInfo = actualResponse.data
+            let welcomeMessage = document.createElement('h2')
+            let greeting = 'Welcome ' + userInfo.name + '!'
+            welcomeMessage.textContent = greeting
+            document.querySelector('#greeting').appendChild(welcomeMessage)
+        })
+    })
 loadUpUserPage(userID, filters)
 
 document.querySelector('#search-text').addEventListener('input', (e) => {

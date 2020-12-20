@@ -1,43 +1,24 @@
 const loadUpUserPage = (userID, filters) => {
-    const userData = {
-        email: '',
-        password: ''
-    }
     recipeList = []
-    let userInfo = {}
-    fetch('http://localhost:8081/api/user/' + userID).then((response) => {
+
+    var userToken = localStorage.getItem("token")
+    fetch('http://localhost:8081/api/recipes', {
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + userToken,
+            "Content-Type": "application/json"
+        }
+    }).then((response) => {
         response.json().then(function (actualResponse) {
             if ((actualResponse.status) && actualResponse.status !== 200) {
                 console.log('Something is not right')
                 console.log(actualResponse.status)
             }
-            userData.email = actualResponse.data.email
-            userData.password = actualResponse.data.password
-            userInfo = actualResponse.data
-            let welcomeMessage = document.createElement('h2')
-            let greeting = 'Welcome ' + userInfo.name + '!'
-            welcomeMessage.textContent = greeting
-            document.querySelector('#greeting').appendChild(welcomeMessage)
+            recipeList = actualResponse.recipes
+            debugger
+            renderRecipes(recipeList, filters)
         })
     })
-
-    // fetch('http://localhost:8081/api/recipes', {
-    //     method: 'GET',
-    //     headers: {
-    //         "Authorization": "Bearer" + jwt.sign(userToken,),
-    //         "Content-Type": "application/json"
-    //     }
-    // }).then((response) => {
-    //     response.json().then(function (actualResponse) {
-    //         if ((actualResponse.status) && actualResponse.status !== 200) {
-    //             console.log('Something is not right')
-    //             console.log(actualResponse.status)
-    //         }
-    //         recipeList = actualResponse.data
-    //         renderRecipes(recipeList, filters)
-    //     })
-    // })
-    recipeList = []
     renderRecipes(recipeList, filters)
 }
 
@@ -46,23 +27,22 @@ const generateSmallRecipeDOM = (recipe) => {
     const titleElement = document.createElement('p')
     const viewElement = document.createElement('button')
 
-    titleElement.textContent = recipe.title
+    titleElement.textContent = recipe.name
     // titleElement.classList.add('list-item__title')
     recipeElement.appendChild(titleElement)
 
     // Set up the view button
-    viewElement.addEventListeer('click', `/view-recipe.html#${recipe.id}`)
+    // viewElement.addEventListener('click', `/view-recipe.html#${recipe.id}`)
     // viewElement.classList.add('list-item')
 
     return recipeElement
 }
 
 const renderRecipes = (recipeList, filters) => {
-    const recipesElement = document.querySelector('div#recipeList')
     debugger
+    const recipesElement = document.querySelector('div#recipeList')
     recipeList = sortRecipes(recipeList, filters.sortBy)
-    const filteredRecipes = recipeList.filter((recipe) => recipe.title.toLowerCase().includes(filters.searchText.toLowerCase()))
-    
+    const filteredRecipes = recipeList.filter((recipe) => recipe.name.toLowerCase().includes(filters.searchText.toLowerCase()))
     //Not sure what the bottom does tbh...
     recipesElement.innerHTML = '<p></p>'
 
@@ -83,10 +63,11 @@ const renderRecipes = (recipeList, filters) => {
 const sortRecipes = (recipeList, sortBy) => {
     if (sortBy === 'alphabetical'){
         return recipeList.sort((a, b) => {
-            if (a.title.toLowerCase() < b.title.toLowerCase()){
+            debugger
+            if (a.name.toLowerCase() < b.name.toLowerCase()){
                 return -1
             }
-            else if (a.title.toLowerCase() > b.title.toLowerCase()){
+            else if (a.name.toLowerCase() > b.name.toLowerCase()){
                 return 1
             }
             else {
@@ -99,22 +80,20 @@ const sortRecipes = (recipeList, sortBy) => {
     }
 }
 
-
-
 const createRecipe = (userID, recipeData) => {
     let fetchRecipeData = {
-        title: recipeData.title,
+        name: recipeData.title,
         type: recipeData.type,
         servingAmount: recipeData.servingAmount,
         ingredients: recipeData.ingredients,
         directions: recipeData.directions
     }
     var userToken = localStorage.getItem("token")
-    userToken = JSON.stringify(userToken)
+    var userid = localStorage.getItem("id")
     fetch("http://localhost:8081/api/recipe/", {
         method: 'POST',
         headers: {
-            "Authorization": "Bearer" + jwt.sign(userToken,),
+            "Authorization": "Bearer " + userToken,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(fetchRecipeData)
@@ -125,6 +104,7 @@ const createRecipe = (userID, recipeData) => {
                 console.log(actualData.status)
             }
             console.log(actualData)
+            location.assign('/user.html')
         })
     })
 }

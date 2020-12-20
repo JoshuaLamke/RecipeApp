@@ -12,9 +12,9 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
     if(!firstName || !lastName || !email || !newPassword || !confirmPassword) {
         alert('Please fill in all boxes!')
     }
-    if (newPassword.length <= 7) {
-        alert('The password must be at least 8 characters')
-    }
+    // if (newPassword.length <= 7) {
+    //     alert('The password must be at least 8 characters')
+    // }
     else if (newPassword !== confirmPassword) {
         alert('The password do not match')
     }
@@ -49,8 +49,9 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
             if ((data1.status) && data1.status !== 200) {
                 console.log('Something is not right with login')
             }
-            localStorage.setItem("id", data1.data.id)
-            localStorage.setItem("token", JSON.stringify(data1.Token))
+            console.log(data1["User info"])
+            localStorage.setItem("id", data1["User info"].data.id)
+            localStorage.setItem("token", data1["User info"].Token)
             location.assign(`/user.html`)
         })
     })
