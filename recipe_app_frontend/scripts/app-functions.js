@@ -15,7 +15,6 @@ const loadUpUserPage = (userID, filters) => {
                 console.log(actualResponse.status)
             }
             recipeList = actualResponse.recipes
-            debugger
             renderRecipes(recipeList, filters)
         })
     })
@@ -24,22 +23,26 @@ const loadUpUserPage = (userID, filters) => {
 
 const generateSmallRecipeDOM = (recipe) => {
     const recipeElement = document.createElement('div')
-    const titleElement = document.createElement('p')
-    const viewElement = document.createElement('button')
+    const titleElement = document.createElement('a')
+    const textElement = document.createAttribute('p')
+    // const viewElement = document.createElement('button')
 
-    titleElement.textContent = recipe.name
+    titleElement.innerText = recipe.name
     // titleElement.classList.add('list-item__title')
+    // titleElement.appendChild(textElement)
+    titleElement.setAttribute('href', `/view-recipe.html#${recipe.id}`)
     recipeElement.appendChild(titleElement)
 
     // Set up the view button
-    // viewElement.addEventListener('click', `/view-recipe.html#${recipe.id}`)
+    // viewElement.addEventListener('click', (e) => {
+    //     location.assign(`/../view-recipe.html#${recipe.id}`)
+    // })
     // viewElement.classList.add('list-item')
-
+    // recipeElement.appendChild(viewElement)
     return recipeElement
 }
 
 const renderRecipes = (recipeList, filters) => {
-    debugger
     const recipesElement = document.querySelector('div#recipeList')
     recipeList = sortRecipes(recipeList, filters.sortBy)
     const filteredRecipes = recipeList.filter((recipe) => recipe.name.toLowerCase().includes(filters.searchText.toLowerCase()))
@@ -63,7 +66,6 @@ const renderRecipes = (recipeList, filters) => {
 const sortRecipes = (recipeList, sortBy) => {
     if (sortBy === 'alphabetical'){
         return recipeList.sort((a, b) => {
-            debugger
             if (a.name.toLowerCase() < b.name.toLowerCase()){
                 return -1
             }
