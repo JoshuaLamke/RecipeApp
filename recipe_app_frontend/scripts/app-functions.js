@@ -105,8 +105,8 @@ const createRecipe = (userID, recipeData) => {
                 console.log('Something is not right with sign up')
                 console.log(actualData.status)
             }
-            console.log(actualData)
-            location.assign('/user.html')
+            console.log(actualData);
+            location.assign('/user.html');
         })
     })
 }

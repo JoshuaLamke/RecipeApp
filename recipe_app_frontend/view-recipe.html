@@ -9,14 +9,23 @@
             <h2 id = "recipe-type" class = "name-input"></h2>
             <h2 id = "recipe-servings" class = "name-input"></h2>
             <div id="body">
-                <p id = "recipe-ingredients" class = "body-input"></p>
-                <p id = "recipe-directions" class = "body-input"></p>
+                <label for="recipe-ingredients">Ingredients:</label>
+                <ul id="recipe-ingredients" class = body-input>
+
+                </ul>
+                <label for="recipe-directions">Directions:</label>
+                <ol id = "recipe-directions" class = "body-input">
+
+                </ol>
             </div>
             <a href="user.html">Return</a>
+            <br>
+            <br>
             <div id="extra-options">
                 <form id="recipe-edit">
                     <input type="submit" value="Edit Recipe">
                 </form>
+                <br>
                 <form id="recipe-delete">
                     <input type="submit" value="Delete Recipe">
                 </form>

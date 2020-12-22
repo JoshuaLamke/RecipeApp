@@ -31,8 +31,44 @@ fetch('http://localhost:8081/api/recipes', {
         titleElement.textContent = wantedRecipe.name
         typeElement.textContent = "Type: " + wantedRecipe.type
         servingsElement.textContent = "Number of servings: " + wantedRecipe.servingAmount
-        ingredientsElement.textContent = "Ingredients: " + wantedRecipe.ingredients
-        directionsElement.textContent = wantedRecipe.directions
+        var str = wantedRecipe.ingredients
+        var res = str.split(", ");
+        let count = 0;
+        res.forEach((element) => {
+            count++
+            let newElement = document.createElement('li')
+            newElement.textContent = element
+            ingredientsElement.appendChild(newElement)
+        });
+        var strDir = wantedRecipe.directions
+        var resDir = strDir.split(". ");
+        const resDirLength = resDir.length;
+        let countDir = 0;
+        resDir.forEach((element) => {
+            if (countDir === resDirLength-1) {
+                const length = element.length
+                var newString = element.substring(0, length-1)
+                if (element[length - 1] == ".") {
+                    let newElement = document.createElement('li')
+                    newElement.textContent = newString
+                    directionsElement.appendChild(newElement)
+                    countDir++
+                    return
+                }
+                else {
+                    let newElement = document.createElement('li')
+                    newElement.textContent = element
+                    directionsElement.appendChild(newElement)
+                    countDir++
+                    return
+                }
+                
+            }
+            let newElement = document.createElement('li')
+            newElement.textContent = element
+            directionsElement.appendChild(newElement)
+            countDir++
+        });
     })
 })
 
