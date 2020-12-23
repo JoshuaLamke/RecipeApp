@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href="/styles/user.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Recipe App</h1>
-        <div id="greeting"></div>
-        <div id="container">
-            <input id = "search-text" type = "text" class = "input" placeholder = "Search for recipe">
-            <select id = "filter-by" class = "dropdown">
-            <!-- <option value = "byEdited">Sort by last edited</option>
-            <option value = "byCreated">Sort by recently created</option> -->
-            <option value = "alphabetical">Sort alphabetically</option>
-            </select>
+        <div id="label">
+            <h1 id = "title">Recipe App</h1>
         </div>
-        <div id="recipeList"></div>
-        <br>
-        <div id="general">
-            <button id="create-recipe">Create Recipe!</button>
-            <button id="log-out">Log Out</button>
+        <div class="actions">
+            <div class = "actions__container" id="container">
+                <div id="greeting"></div>
+                <input id = "search-text" type = "text" class = "input" placeholder = "Search for recipe">
+                <select id = "filter-by" class = "dropdown">
+                <!-- <option value = "byEdited">Sort by last edited</option>
+                <option value = "byCreated">Sort by recently created</option> -->
+                <option value = "alphabetical">Sort alphabetically</option>
+                </select>
+            </div>
         </div>
+        <div id = "wrapper">
+            <label for="recipeList">Recipes:</label>
+            <div id="recipeList"></div>
+            <br>
+            <div id="general">
+                <button id="create-recipe">Create Recipe!</button>
+                <button id="log-out">Log Out</button>
+            </div>
+        </div>
+        
         <script src="/scripts/app-functions.js"></script>
         <script src="/scripts/userApp.js"></script>
     </body>

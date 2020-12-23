@@ -3,6 +3,10 @@ fetch('http://localhost:8081/api/users').then((response) => {
              console.log(data)
          })
 })
+document.querySelector("#cancel").addEventListener("submit", (e) => {
+    e.preventDefault()
+    location.assign("/index.html")
+})
 document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
     e.preventDefault()
     const firstName = e.target[0].value

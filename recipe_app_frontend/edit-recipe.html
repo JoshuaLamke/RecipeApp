@@ -2,14 +2,15 @@
 
 <html>
     <head>
-        <!-- <link href = "/styles/styles.css" rel = "stylesheet"> -->
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href = "/styles/new-edit-recipe.css" rel = "stylesheet">
     </head>
     <body>
-        <div class = "header">
-            <div class = "container">
-                <h1 class = "header__title">Edit Recipe</h1>
-                <h2 class = "header__subtitle">Update your recipe!</h2>
-            </div>
+        <div id="label">
+            <h1 id="title">Recipe App</h1>
+        </div>
+        <div id="sublabel">
+            <h2 id="subtitle">Update your recipe!</h2>
         </div>
         <br>
         <div class="container">
@@ -37,14 +38,12 @@
                 <label for="directions-bar">Directions (Write full sentences):</label>
                 <br>
                 <textarea cols="70" rows="10" id="directions-bar" type="text"></textarea>
-                <input type="submit" placeholder="Update Recipe">
+                <input id="submit-button" type="submit" placeholder="Update Recipe">
             </form>
-        </div>
-        <br>
-        <div class="actions">
-            <div class="actions__container actions__container--spaced">
-                <a href = "/user.html">Cancel</a>
-            </div>
+            <br>
+            <form id="cancel">
+                <input id="cancel-button" type="submit" value="Cancel">
+            </form>
         </div>
         <script src = "/scripts/app-functions.js"></script>
         <script src = "/scripts/edit-recipe.js"></script>

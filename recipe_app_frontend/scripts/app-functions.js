@@ -32,6 +32,7 @@ const generateSmallRecipeDOM = (recipe) => {
     // titleElement.appendChild(textElement)
     titleElement.setAttribute('href', `/view-recipe.html#${recipe.id}`)
     recipeElement.appendChild(titleElement)
+    recipeElement.setAttribute("id", "item")
 
     // Set up the view button
     // viewElement.addEventListener('click', (e) => {

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href="/styles/new-edit-recipe.css" rel="stylesheet">
     </head>
     <body>
-        <h1>New Recipe!</h1>
+        <div id="label">
+            <h1 id="title">Recipe App</h1>
+        </div>
+        <div id="sublabel">
+            <h1 id="subtitle">Create your own recipe!</h1>
+        </div>
         <div class="container">
             <form id="new-recipe">
                 <label for="title-bar">Name:</label>
@@ -19,23 +25,23 @@
                     <option value = "Other">Other</option>
                 </select>
                 <label for="serving-amount-bar">Amount of Servings:</label>
-                <input id="serving-amount-bar" type="number" min="1" placeholder="Amount of servings (At least 1)">
+                <input id="serving-amount-bar" type="number" min="1" max = "99" placeholder="Amount">
                 <br>
                 <br>
                 <label for="ingredients-bar">Ingredients:</label>
                 <br>
-                <textarea id="ingredients-bar" rows="10" cols="50" type="text" placeholder="Ingredients, seperate with commas"></textarea>
+                <textarea id="ingredients-bar" rows="10" cols="50" type="text" placeholder="Seperate with commas! Example: 1 cup of milk, 2 grams of sugar, 2 eggs"></textarea>
                 <br>
                 <br>
                 <label for="directions-bar">Directions:</label>
                 <br>
-                <textarea cols="70" rows="10" id="directions-bar" type="text" placeholder="Directions, seperate with periods"></textarea>
-                <input type="submit" placeholder="Update Recipe">
+                <textarea cols="70" rows="10" id="directions-bar" type="text" placeholder="Seperate with periods! Example: Pour milk into bowl. Crack eggs and pour into bowl. Mix well. Add sugar andthen mix again. "></textarea>
+                <input id = "submit-button"type="submit" placeholder="Update Recipe">
+            </form>
+            <form id="cancel">
+                <input id = "cancel-button" type="submit" value="Cancel">
             </form>
         </div>
-        <form id="cancel">
-            <input type="submit" value="cancel">
-        </form>
         <script src="/scripts/app-functions.js"></script>
         <script src="/scripts/new-recipe.js"></script>
     </body>

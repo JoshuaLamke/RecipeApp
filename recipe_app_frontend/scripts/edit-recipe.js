@@ -73,8 +73,13 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
                 console.log(actualData.status)
             }
             console.log(actualData)
-            location.assign('/user.html')
+            location.assign(`/view-recipe.html#${recipeID}`)
         })
     })
 
+})
+
+document.querySelector("#cancel").addEventListener("submit", (e) => {
+    e.preventDefault()
+    location.assign(`/view-recipe.html#${recipeID}`)
 })

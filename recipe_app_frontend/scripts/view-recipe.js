@@ -93,3 +93,8 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
     e.preventDefault()
     location.assign(`/edit-recipe.html#${recipeID}`)
 })
+
+document.querySelector('#recipe-return').addEventListener("submit", (e) => {
+    e.preventDefault()
+    location.assign('/user.html')
+})

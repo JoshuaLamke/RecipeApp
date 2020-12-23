@@ -1,0 +1,51 @@
+#label {
+    background: lightskyblue;
+    padding: 1.2rem 1.6rem;
+}
+
+#title {
+    font-size: 2.5rem;
+    margin-bottom: .4rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0rem;
+}
+
+label {
+    font-weight: bold;
+    padding: 0.2rem;
+}
+
+.actions {
+    align-items: center;
+    display: flex;
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #dedfe0;
+    padding: 0 1.6rem;  
+    padding-bottom: 0.4rem;
+    padding-top: 0.4rem;
+}
+
+#wrapper {
+    padding: 0 1.6rem;
+    padding-top: 0.4rem;
+}
+
+#recipeList {
+    padding: 0.2rem;
+}
+
+.actions__container--spaced {
+    justify-content: space-between
+}
+
+#create-recipe {
+    font-weight: bold;
+}
+
+#log-out {
+    font-weight: bold;
+}
