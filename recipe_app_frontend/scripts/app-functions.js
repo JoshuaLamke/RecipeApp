@@ -183,20 +183,29 @@ const renderRecipes = (recipeList, filters) => {
             const oLabel = document.createElement('label')
             oLabel.setAttribute('for', 'otherGroup')
             oLabel.textContent = 'Other: \r\n'
-
-            //Adding all the labels and type groups here, remember that this will only occur if sorting by type
-            recipesElement.appendChild(bLabel)
-            recipesElement.appendChild(breakfastGroup)
-            recipesElement.appendChild(lLabel)
-            recipesElement.appendChild(lunchGroup)
-            recipesElement.appendChild(dLabel)
-            recipesElement.appendChild(dinnerGroup)
-            recipesElement.appendChild(deLabel)
-            recipesElement.appendChild(dessertGroup)
-            recipesElement.appendChild(sLabel)
-            recipesElement.appendChild(snackGroup)
-            recipesElement.appendChild(oLabel)
-            recipesElement.appendChild(otherGroup)
+            //This will occus if there as at least one type that has at least one recipe
+            if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
+                //Adding all the labels and type groups here, remember that this will only occur if sorting by type
+                recipesElement.appendChild(bLabel)
+                recipesElement.appendChild(breakfastGroup)
+                recipesElement.appendChild(lLabel)
+                recipesElement.appendChild(lunchGroup)
+                recipesElement.appendChild(dLabel)
+                recipesElement.appendChild(dinnerGroup)
+                recipesElement.appendChild(deLabel)
+                recipesElement.appendChild(dessertGroup)
+                recipesElement.appendChild(sLabel)
+                recipesElement.appendChild(snackGroup)
+                recipesElement.appendChild(oLabel)
+                recipesElement.appendChild(otherGroup)
+            }
+            //If every type group is empty it will just display the regular no recipes message
+            else {
+                const emptyMessage = document.createElement('p')
+                emptyMessage.textContent = 'You currently have no recipes. Try creating one!'
+                emptyMessage.classList.add('empty-message')
+                recipesElement.appendChild(emptyMessage)
+            }
         }
     }
     else {
