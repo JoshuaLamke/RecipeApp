@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href="/styles/view-recipe.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="label">
+            <h1 id="title">Recipe App</h1>
+        </div>
+        <div class="container">
+            <div id="sublabel">
+                <h1 id = "recipe-name" class = "name-input"></h1>
+            </div>
+            <div id = "big">
+                <h2 id = "recipe-type" class = "name-input"></h2>
+                <h2 id = "recipe-servings" class = "name-input"></h2>
+            </div>
+            <div id="body">
+                <div id="i">
+                    <label for="recipe-ingredients">Ingredients:</label>
+                    <ul id="recipe-ingredients" class = body-input>
+
+                    </ul>
+                </div>
+                <div id="d">
+                    <label for="recipe-directions">Directions:</label>
+                    <ol id = "recipe-directions" class = "body-input">
+
+                    </ol>
+                </div>
+            </div>
+            <div id="extra-options">
+                <form id = "recipe-return">
+                    <input id="return-button" type="submit" value="Return">
+                </form>
+                <br>
+                <form id="recipe-edit">
+                    <input id = "edit-button" type="submit" value="Edit Recipe">
+                </form>
+                <br>
+                <form id="recipe-delete">
+                    <input id = "delete-button" type="submit" value="Delete Recipe">
+                </form>
+            </div>
+        </div>
+        <script src="/scripts/app-functions.js"></script>
+        <script src="/scripts/view-recipe.js"></script>
+    </body>
+</html>

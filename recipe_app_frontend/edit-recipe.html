@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href = "/styles/new-edit-recipe.css" rel = "stylesheet">
+    </head>
+    <body>
+        <div id="label">
+            <h1 id="title">Recipe App</h1>
+        </div>
+        <div id="sublabel">
+            <h2 id="subtitle">Update your recipe!</h2>
+        </div>
+        <br>
+        <div class="container">
+            <form id="recipe-edit">
+                <label for="title-bar">Name:</label>
+                <input id="title-bar" type="text">
+                <label for="type-bar">Type:</label>
+                <select id = "type-bar" class = "dropdown">
+                    <option value = "Breakfast">Breakfast</option>
+                    <option value = "Lunch">Lunch</option>
+                    <option value = "Dinner">Dinner</option>
+                    <option value = "Dessert">Dessert</option>
+                    <option value = "Snack">Snack</option>
+                    <option value = "Other">Other</option>
+                </select>
+                <label for="serving-amount-bar">Amount of Servings:</label>
+                <input id="serving-amount-bar" type="number" min="1">
+                <br>
+                <br>
+                <label for="ingredients-bar">Ingredients (Seperate with commas):</label>
+                <br>
+                <textarea id="ingredients-bar" rows="10" cols="50" type="text"></textarea>
+                <br>
+                <br>
+                <label for="directions-bar">Directions (Write full sentences):</label>
+                <br>
+                <textarea cols="70" rows="10" id="directions-bar" type="text"></textarea>
+                <input id="submit-button" type="submit" placeholder="Update Recipe">
+            </form>
+            <br>
+            <form id="cancel">
+                <input id="cancel-button" type="submit" value="Cancel">
+            </form>
+        </div>
+        <script src = "/scripts/app-functions.js"></script>
+        <script src = "/scripts/edit-recipe.js"></script>
+    </body>
+</html>

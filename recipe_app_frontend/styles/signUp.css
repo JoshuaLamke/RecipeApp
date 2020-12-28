@@ -1,18 +1,32 @@
+body {
+    background:lightskyblue;
+}
+
+.container {
+    font-weight: bold;
+}
+
 #title {
-    background: green;
     display: flex;
     justify-content: center;
     border-bottom: 1px solid black;
-    padding-top: 3rem;
+    padding-top: 5rem;
 }
+
 #login-info {
     padding-top: 2rem;
 }
+
 #login-form-container {
     display: flex;
     justify-content: center;
 }
-#sign-up-form {
+
+p {
+    padding-left: 1rem;
+}
+
+#sign-up-button {
     display: flex;
     flex-direction: column;
     justify-content: center;

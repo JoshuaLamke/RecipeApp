@@ -1,5 +1,5 @@
 body {
-    background: rgb(15, 78, 15);
+    background: lightskyblue;
 }
 #greeting {
     display: flex;
@@ -17,6 +17,11 @@ body {
 #login-form {
     display: flex;
     flex-direction: column;
+}
+#sign-up-button{
+    display: flex;
+    justify-content: center;
+
 }
 input {
     padding: 1rem;

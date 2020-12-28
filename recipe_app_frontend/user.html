@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe App: Save Your Recipes!</title>
+        <link href="/styles/user.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="label">
+            <h1 id = "title">Recipe App</h1>
+        </div>
+        <div class="actions">
+            <div class = "actions__container" id="container">
+                <div id="greeting"></div>
+                <input id = "search-text" type = "text" class = "input" placeholder = "Search for recipe">
+                <select id = "filter-by" class = "dropdown">
+                <!-- <option value = "byEdited">Sort by last edited</option> -->
+                <option value = "byType">Sort by type</option>
+                <option value = "alphabetical">Sort alphabetically</option>
+                <option value = "byCreated">Sort by recently created</option>
+                
+                </select>
+            </div>
+        </div>
+        <div id = "wrapper">
+            <label  id="main-label" for="recipeList">Recipes: (Click on a recipe below to view it!)</label>
+            <br>
+            <div id="recipeList"></div>
+            <br>
+            <div id="general">
+                <button id="create-recipe">Create Recipe!</button>
+                <button id="log-out">Log Out</button>
+            </div>
+        </div>
+        
+        <script src="/scripts/app-functions.js"></script>
+        <script src="/scripts/userApp.js"></script>
+    </body>
+</html>
