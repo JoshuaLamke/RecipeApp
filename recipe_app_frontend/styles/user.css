@@ -17,6 +17,8 @@
 label {
     font-weight: bold;
     padding: 0.2rem;
+    padding-left: 0rem;
+    white-space: pre;
 }
 
 .actions {
@@ -27,15 +29,33 @@ label {
     padding: 0 1.6rem;  
     padding-bottom: 0.4rem;
     padding-top: 0.4rem;
+    font-size: 125%;
+}
+
+.recipeItem {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.typeLabel {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    /* margin: 0.3rem; */
+    margin-left: 1rem;
+
 }
 
 #wrapper {
     padding: 0 1.6rem;
-    padding-top: 0.4rem;
+    padding-top: 0.5rem;
+}
+
+#main-label {
+    font-size: 135%;
 }
 
 #recipeList {
-    padding: 0.2rem;
+    padding: 0.4rem;
 }
 
 .actions__container--spaced {
@@ -45,6 +65,11 @@ label {
 #create-recipe {
     font-weight: bold;
 }
+
+a {
+    color: rgb(238, 55, 86);
+    text-decoration: none;
+}s
 
 #log-out {
     font-weight: bold;

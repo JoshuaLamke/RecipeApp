@@ -1,7 +1,7 @@
 const userID = localStorage.getItem("id")
 const filters = {
     searchText: '',
-    sortBy: 'alphabetical'
+    sortBy: 'byType'
 }
 let userData = {
     email: '',
@@ -35,7 +35,6 @@ document.querySelector('#filter-by').addEventListener('change', (e) => {
     loadUpUserPage(userID, filters)
 })
 
-//Window closed?
 document.querySelector('#create-recipe').addEventListener('click', (e) => {
     location.assign("/new-recipe.html")
 })
@@ -46,6 +45,7 @@ document.querySelector('#log-out').addEventListener('click', (e) => {
     location.replace("/index.html")
 })
 
+//Window closed?
 // window.addEventListener("beforeunload", (e) => {
 //     localStorage.removeItem("id")
 //     localStorage.removeItem("token")
