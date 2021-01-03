@@ -289,5 +289,7 @@ const createRecipe = (userID, recipeData) => {
             console.log(actualData);
             location.assign('/user.html');
         })
+    }).catch((err) => {
+        console.log(err)
     })
 }
