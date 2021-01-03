@@ -51,8 +51,8 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
             }
             console.log(data1)
             // ["User info"]
-            console.log(data1["User info"].data)
-            localStorage.setItem("id", data1["User info"].data.id)
+            console.log(data1["User info"][data])
+            localStorage.setItem("id", data1["User info"][data].id)
             localStorage.setItem("token", data1["User info"].Token)
             location.assign(`/user.html`)
         })
