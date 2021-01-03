@@ -36,12 +36,12 @@ document.querySelector('#filter-by').addEventListener('change', (e) => {
 })
 
 document.querySelector('#create-recipe').addEventListener('click', (e) => {
-    
+    e.preventDefault()
     location.assign("/new-recipe.html")
 })
 
 document.querySelector('#log-out').addEventListener('click', (e) => {
-    
+    e.preventDefault()
     localStorage.removeItem("id")
     localStorage.removeItem("token")
     location.replace("/index.html")
