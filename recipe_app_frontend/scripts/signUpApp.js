@@ -34,27 +34,27 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
                 console.log(actualData.status)
             }
             console.log(actualData)
-        })
-    })
-    const newUserData = {
-        email,
-        password: newPassword
-    }
-    fetch("https://recipe-app-jg.herokuapp.com/api/user/login", {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newUserData)
-    }).then((response) => {
-        response.json().then(function (data1) {
-            if ((data1.status) && data1.status !== 200) {
-                console.log('Something is not right with login')
+            const newUserData = {
+                email,
+                password: newPassword
             }
-            console.log(data1)
-            // ["User info"]
-            console.log(data1["User Info"])
-            localStorage.setItem("id", data1["User Info"].data.id)
-            localStorage.setItem("token", data1["User Info"].Token)
-            location.assign(`/user.html`)
+            fetch("https://recipe-app-jg.herokuapp.com/api/user/login", {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newUserData)
+            }).then((response) => {
+                response.json().then(function (data1) {
+                    if ((data1.status) && data1.status !== 200) {
+                        console.log('Something is not right with login')
+                    }
+                    console.log(data1)
+                    // ["User info"]
+                    console.log(data1["User Info"])
+                    localStorage.setItem("id", data1["User Info"].data.id)
+                    localStorage.setItem("token", data1["User Info"].Token)
+                    location.assign(`/user.html`)
+                })
+            })
         })
     })
 })
