@@ -6,7 +6,8 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         email,
         password
     }
-    fetch("http://localhost:8080/api/user/login", {
+    // "http://localhost:8080/api/user/login"
+    fetch("https://recipe-app-jg.herokuapp.com/api/user/login", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUserData)

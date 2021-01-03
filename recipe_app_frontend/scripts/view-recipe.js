@@ -7,7 +7,7 @@ const recipeID = location.hash.substring(1)
 
 let recipeList = []
 var userToken = localStorage.getItem("token")
-fetch('http://localhost:8080/api/recipes', {
+fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
     method: 'GET',
     headers: {
         "Authorization": "Bearer " + userToken,
@@ -75,7 +75,7 @@ fetch('http://localhost:8080/api/recipes', {
 //If the user clicks the delete button it will delete the recipe
 document.querySelector('#recipe-delete').addEventListener('submit', (e) => {
     e.preventDefault()
-    fetch("http://localhost:8080/api/recipe/" + recipeID, {
+    fetch("https://recipe-app-jg.herokuapp.com/api/recipe/" + recipeID, {
         method: 'DELETE',
         headers: {
             "Authorization": "Bearer " + userToken,

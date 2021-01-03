@@ -59,7 +59,7 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
     recipeData.ingredients = e.target[3].value
     recipeData.directions = e.target[4].value
     let userID = localStorage.getItem("id")
-    fetch("http://localhost:8080/api/recipe/update", {
+    fetch("https://recipe-app-jg.herokuapp.com/api/recipe/update", {
         method: 'POST',
         headers: {
             "Authorization": "Bearer " + userToken,

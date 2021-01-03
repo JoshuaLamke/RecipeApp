@@ -29,23 +29,23 @@ document.querySelector("#cancel").addEventListener("submit", (e) => {
     location.assign('/user.html')
 })
 
-// //Set up event listener for the body...
-// bodyElement.addEventListener('input', (e) => {
-//     note.body = e.target.value
-//     note.updatedAt = dayjs()
-//     note.updatedTimeStamp = dayjs().valueOf()
-//     dateElement.textContent = `Last edited on ${dayjs(note.updatedAt).format('MMMM D, YYYY H:m:s')}`
-//     saveNotes(notes)
-// })
+//Set up event listener for the body...
+bodyElement.addEventListener('input', (e) => {
+    note.body = e.target.value
+    note.updatedAt = dayjs()
+    note.updatedTimeStamp = dayjs().valueOf()
+    dateElement.textContent = `Last edited on ${dayjs(note.updatedAt).format('MMMM D, YYYY H:m:s')}`
+    saveNotes(notes)
+})
 
-// //Set up event listener for the remove button...
-// document.querySelector('#remove-note').addEventListener('click', (e) => {
-//     removeNote(note.id)
-//     saveNotes(notes)
-//     location.assign('/index.html')
-// })
+//Set up event listener for the remove button...
+document.querySelector('#remove-note').addEventListener('click', (e) => {
+    removeNote(note.id)
+    saveNotes(notes)
+    location.assign('/index.html')
+})
 
-// // Will listen in the window in other tabs and notice changes in the other tabs...
+// Will listen in the window in other tabs and notice changes in the other tabs...
 // window.addEventListener('storage', (e) => {
 //     if (e.key === 'notes'){
 //         notes = JSON.parse(e.newValue)
@@ -60,17 +60,17 @@ document.querySelector("#cancel").addEventListener("submit", (e) => {
 //         dateElement.textContent = `Last edited on ${dayjs(note.updatedAt).format('MMMM D, YYYY H:m:s')}`
 //     }
 // })
-// fetch("http://localhost:8081/api/recipe/", {
-//         method: 'POST',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(recipeData)
-//     }).then((response) => {
-//         response.json().then(function (actualData) {
-//             if ((actualData.status) && actualData.status !== 200) {
-//                 console.log('Something is not right with sign up')
-//                 console.log(actualData.status)
-//             }
-//             console.log(actualData)
+fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(recipeData)
+    }).then((response) => {
+        response.json().then(function (actualData) {
+            if ((actualData.status) && actualData.status !== 200) {
+                console.log('Something is not right with sign up')
+                console.log(actualData.status)
+            }
+            console.log(actualData)
             
-//         })
-//     })
+        })
+    })

@@ -3,7 +3,7 @@ const loadUpUserPage = (userID, filters) => {
     recipeList = []
 
     var userToken = localStorage.getItem("token")
-    fetch('http://localhost:8081/api/recipes', {
+    fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         method: 'GET',
         headers: {
             "Authorization": "Bearer " + userToken,
@@ -273,7 +273,7 @@ const createRecipe = (userID, recipeData) => {
     }
     var userToken = localStorage.getItem("token")
     var userid = localStorage.getItem("id")
-    fetch("http://localhost:8081/api/recipe/", {
+    fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
         method: 'POST',
         headers: {
             "Authorization": "Bearer " + userToken,
