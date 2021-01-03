@@ -45,6 +45,9 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         });
         var strDir = wantedRecipe.directions
         var resDir = strDir.split(". ");
+        for(dir in resDir) {
+            dir.trim()
+        }
         const resDirLength = resDir.length;
         let countDir = 0;
         resDir.forEach((element) => {
