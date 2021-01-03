@@ -14,6 +14,7 @@ const ingredientsElement = document.querySelector('#ingredients-bar')
 const directionsElement = document.querySelector('#directions-bar')
 
 document.querySelector('#new-recipe').addEventListener('submit', (e) => {
+    e.preventDefault()
     recipeData.title = e.target[0].value
     recipeData.type = e.target[1].value
     recipeData.servingAmount = e.target[2].value
