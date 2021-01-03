@@ -12,15 +12,15 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         body: JSON.stringify(newUserData)
     }).then((response) => {
         console.log(response)
-        response.json().then(function (data1) {
+        response.json().then(function(data1) {
             console.log(data1)
-            console.log(data1["User info"])
-            localStorage.setItem("id", data1["User info"].data.id)
-            localStorage.setItem("token", data1["User info"].Token)
+            console.log(data1["User Info"])
+            localStorage.setItem("id", data1["User Info"].data.id)
+            localStorage.setItem("token", data1["User Info"].Token)
             location.assign(`/user.html`)
-        }).catch((err) => { 
-            alert(err, " Could not find user with that login information, please try again or sign up to create a new account!")
         })
+    }).catch((err) => { 
+        alert(err, " Could not find user with that login information, please try again or sign up to create a new account!")
     })
 })
 
