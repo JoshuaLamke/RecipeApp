@@ -49,7 +49,8 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
             if ((data1.status) && data1.status !== 200) {
                 console.log('Something is not right with login')
             }
-            console.log(data1["User info"])
+            console.log(data1)
+            // ["User info"]
             console.log(data1["User info"].data)
             localStorage.setItem("id", data1["User info"].data.id)
             localStorage.setItem("token", data1["User info"].Token)
