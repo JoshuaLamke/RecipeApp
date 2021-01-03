@@ -32,7 +32,10 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         typeElement.textContent = "Type: " + wantedRecipe.type
         servingsElement.textContent = "Number of servings: " + wantedRecipe.servingAmount
         var str = wantedRecipe.ingredients
-        var res = str.split(", ");
+        var res = str.split(",");
+        for(ing in res) {
+            ing.trim()
+        }
         let count = 0;
         res.forEach((element) => {
             count++
