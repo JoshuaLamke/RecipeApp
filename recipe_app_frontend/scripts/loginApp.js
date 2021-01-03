@@ -11,10 +11,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUserData)
     }).then((response) => {
-        console.log(response)
         response.json().then(function(data1) {
-            console.log(data1)
-            console.log(data1["User Info"])
             localStorage.setItem("id", data1["User Info"].data.id)
             localStorage.setItem("token", data1["User Info"].Token)
             location.assign(`/user.html`)
