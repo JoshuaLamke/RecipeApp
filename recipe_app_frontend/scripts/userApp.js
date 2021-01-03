@@ -41,6 +41,7 @@ document.querySelector('#create-recipe').addEventListener('click', (e) => {
 })
 
 document.querySelector('#log-out').addEventListener('click', (e) => {
+    e.preventDefault()
     localStorage.removeItem("id")
     localStorage.removeItem("token")
     location.replace("/index.html")
