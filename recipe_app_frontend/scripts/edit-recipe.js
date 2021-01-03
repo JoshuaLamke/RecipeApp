@@ -16,7 +16,7 @@ const directionsElement = document.querySelector('#directions-bar')
 let recipeList = []
 var userToken = localStorage.getItem("token")
 
-fetch('http://localhost:8080/api/recipes', {
+fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
     method: 'GET',
     headers: {
         "Authorization": "Bearer " + userToken,
