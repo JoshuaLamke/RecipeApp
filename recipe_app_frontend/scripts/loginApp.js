@@ -13,6 +13,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         body: JSON.stringify(newUserData)
     }).then((response) => {
         response.json().then(function (data1) {
+            console.log(data1)
             if (data1.error) {
                 alert("Could not find user with that login information, please try again or sign up to create a new account!")
             }
@@ -26,7 +27,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
                 location.assign(`/user.html`)
             }
         }).catch((err) => { 
-            alert("Could not find user with that login information, please try again or sign up to create a new account!")
+            alert(err, " Could not find user with that login information, please try again or sign up to create a new account!")
         })
     })
 })
