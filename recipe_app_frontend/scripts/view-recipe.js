@@ -44,7 +44,7 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
             ingredientsElement.appendChild(newElement)
         });
         var strDir = wantedRecipe.directions
-        var resDir = strDir.split(". ");
+        var resDir = strDir.split(".");
         for(dir in resDir) {
             dir.trim()
         }
