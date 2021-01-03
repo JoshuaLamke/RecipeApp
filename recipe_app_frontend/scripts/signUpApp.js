@@ -1,8 +1,3 @@
-fetch('http://localhost:8080/api/users').then((response) => {
-         response.json().then((data) => {
-             console.log(data)
-         })
-})
 document.querySelector("#cancel").addEventListener("submit", (e) => {
     e.preventDefault()
     location.assign("/index.html")
