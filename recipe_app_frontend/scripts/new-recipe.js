@@ -1,7 +1,7 @@
 const id = location.hash
 const userID = id.split("#").pop()
 let recipeData = {
-    name: '',
+    title: '',
     type: '',
     servingAmount: '',
     ingredients: '',
@@ -15,7 +15,7 @@ const directionsElement = document.querySelector('#directions-bar')
 
 document.querySelector('#new-recipe').addEventListener('submit', (e) => {
     e.preventDefault()
-    recipeData.name = e.target[0].value
+    recipeData.title = e.target[0].value
     recipeData.type = e.target[1].value
     recipeData.servingAmount = e.target[2].value
     recipeData.ingredients = e.target[3].value
