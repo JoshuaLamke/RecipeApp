@@ -70,8 +70,8 @@ app.post("/api/user/login", (req, res) => {
                     }
                     else{
                         res.json({
-                            "User info": userInfo,
-                            "User recipes": rows
+                            "User Info": userInfo,
+                            "User Recipes": rows
                         });
                     }
                 });

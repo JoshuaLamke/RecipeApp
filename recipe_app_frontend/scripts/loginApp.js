@@ -6,7 +6,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         email,
         password
     }
-    fetch("http://localhost:8081/api/user/login", {
+    fetch("http://localhost:8080/api/user/login", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUserData)
@@ -24,11 +24,13 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
                 localStorage.setItem("token", data1["User info"].Token)
                 location.assign(`/user.html`)
             }
+        }).catch((err) => { 
+            alert("Could not find user with that login information, please try again or sign up to create a new account!")
         })
     })
 })
 
 document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
     e.preventDefault()
-    location.assign('/signUp.html')
+    location.assign('./signUp.html')
 })

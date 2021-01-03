@@ -8,7 +8,7 @@ let userData = {
     password: ''
 }
 let userInfo = {}
-fetch('http://localhost:8081/api/user/' + userID).then((response) => {
+fetch('http://localhost:8080/api/user/' + userID).then((response) => {
         response.json().then(function (actualResponse) {
             if ((actualResponse.status) && actualResponse.status !== 200) {
                 console.log('Something is not right')

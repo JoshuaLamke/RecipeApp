@@ -1,4 +1,4 @@
-fetch('http://localhost:8081/api/users').then((response) => {
+fetch('http://localhost:8080/api/users').then((response) => {
          response.json().then((data) => {
              console.log(data)
          })
@@ -28,7 +28,7 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
         email,
         password: newPassword
     }
-    fetch("http://localhost:8081/api/user/signup", {
+    fetch("http://localhost:8080/api/user/signup", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(userData)
@@ -45,7 +45,7 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
         email,
         password: newPassword
     }
-    fetch("http://localhost:8081/api/user/login", {
+    fetch("http://localhost:8080/api/user/login", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUserData)

@@ -16,7 +16,7 @@ const directionsElement = document.querySelector('#directions-bar')
 let recipeList = []
 var userToken = localStorage.getItem("token")
 
-fetch('http://localhost:8081/api/recipes', {
+fetch('http://localhost:8080/api/recipes', {
     method: 'GET',
     headers: {
         "Authorization": "Bearer " + userToken,
@@ -59,7 +59,7 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
     recipeData.ingredients = e.target[3].value
     recipeData.directions = e.target[4].value
     let userID = localStorage.getItem("id")
-    fetch("http://localhost:8081/api/recipe/update", {
+    fetch("http://localhost:8080/api/recipe/update", {
         method: 'POST',
         headers: {
             "Authorization": "Bearer " + userToken,
