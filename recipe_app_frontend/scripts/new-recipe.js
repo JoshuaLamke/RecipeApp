@@ -1,4 +1,4 @@
-import createRecipe from './app-functions';
+const createRecipe = require('./app-functions')
 const id = location.hash
 const userID = id.split("#").pop()
 let recipeData = {
