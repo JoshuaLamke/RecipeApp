@@ -287,12 +287,12 @@ app.post("/api/recipe/", auth, (req, res) => {
             "userId": req.user.id,
             "name": req.body.name,
             "type": req.body.type,
-            "servingAmount": req.body.servingamount,
+            "servingAmount": req.body.servingAmount,
             "ingredients": req.body.ingredients,
             "directions": req.body.directions
         }
         let sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
-        let params = [data.userId, data.name, data.type, data.servingamount, data.ingredients, data.directions];
+        let params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
         db.query(sql, params, (err, response) => {
             if(err) {
                 res.status(400).json({
@@ -315,21 +315,20 @@ app.post("/api/recipe/", auth, (req, res) => {
 app.post("/api/recipe/update", auth, (req, res) => {
     let name = req.body.name;
     let type = req.body.type;
-    let servingAmount = req.body.servingamount;
+    let servingAmount = req.body.servingAmount;
     let ingredients = req.body.ingredients;
     let directions = req.body.directions;
     let id = req.body.id;
     let sql = "UPDATE recipe SET name = $1, type = $2, servingAmount = $3, ingredients = $4, directions = $5 WHERE id = $6";
-    let params = [name, type, servingamount, ingredients, directions, id];
+    let params = [name, type, servingAmount, ingredients, directions, id];
     let data = {
         name: name,
         type: type,
-        servingamount: servingamount,
+        servingAmount: servingAmount,
         ingredients: ingredients,
         directions: directions,
         id: id
     }
-    console.log(data)
     db.query(sql, params, (err, response) => {
         if(err) {
             res.status(400).json({
