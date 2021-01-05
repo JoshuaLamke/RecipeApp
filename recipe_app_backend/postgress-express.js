@@ -35,7 +35,18 @@ app.listen(process.env.PORT, () => {
 
 //Define root
 app.get("/",(req, res, next) => {
-    res.json({'message': 'Connected'})
+    var sql = "select * from users"
+    var params = []
+    db.query(sql, params, (err, response) => {
+        if (err) {
+          res.status(400).json({"error":err.message});
+          return;
+        }
+        res.json({
+            "message":"success",
+            "data":response.rows
+        })
+      });
 });
 
 // Get a user based on email and password
