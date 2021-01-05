@@ -39,13 +39,13 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         }
         titleElement.value = wantedRecipe.name
         typeElement.value = wantedRecipe.type
-        servingsElement.value = wantedRecipe.servingAmount
+        servingsElement.value = wantedRecipe.servingamount
         ingredientsElement.value = wantedRecipe.ingredients
         directionsElement.value = wantedRecipe.directions
 
         recipeData.name = wantedRecipe.name
         recipeData.type = wantedRecipe.type
-        recipeData.servingAmount = wantedRecipe.servingAmount
+        recipeData.servingAmount = wantedRecipe.servingamount
         recipeData.ingredients = wantedRecipe.ingredients
         recipeData.directions = wantedRecipe.directions
     })
