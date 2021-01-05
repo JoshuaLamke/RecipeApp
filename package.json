@@ -2,10 +2,10 @@
   "name": "recipe_rest_api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "postgress-express.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./recipe_app_backend/server.js"
+    "start": "node ./recipe_app_backend/postgress-express.js"
   },
   "author": "Joshua Lamke",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
+    "pg": "^8.5.1",
     "sqlite3": "^5.0.0"
   }
 }
