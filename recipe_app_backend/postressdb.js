@@ -1,9 +1,9 @@
 const {Client} = require('pg')
-require('dotenv').config();
 const connectionString = process.env.DATABASE_URL
 
 const client = new Client({
-    connectionString,
+    client: 'pg',
+    connection: connectionString
 })
 client.connect()
 client.query('SELECT NOW()', (err, res) => {
