@@ -1,8 +1,7 @@
 #label {
-    background: lightskyblue;
+    background: lightskyblue!important;
     padding: 1.2rem 1.6rem;
 }
-
 #title {
     font-size: 2.5rem;
     margin-bottom: .4rem;
