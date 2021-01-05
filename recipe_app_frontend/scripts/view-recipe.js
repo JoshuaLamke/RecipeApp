@@ -23,7 +23,7 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         let wantedRecipe = recipeList.find(function (recipe) {
             return recipe.id == recipeID
         })
-        alert(wantedRecipe.servingAmount)
+        console.log(wantedRecipe)
         // In case from some reason we can't find the recipe, it will return the user to the previous page
         if (!wantedRecipe){
             location.assign('/user.html')
