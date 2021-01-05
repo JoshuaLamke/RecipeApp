@@ -23,7 +23,6 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         let wantedRecipe = recipeList.find(function (recipe) {
             return recipe.id == recipeID
         })
-        console.log(wantedRecipe)
         // In case from some reason we can't find the recipe, it will return the user to the previous page
         if (!wantedRecipe){
             location.assign('/user.html')
@@ -31,7 +30,7 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         }
         titleElement.textContent = wantedRecipe.name
         typeElement.textContent = "Type: " + wantedRecipe.type
-        servingsElement.textContent = "Number of servings: " + wantedRecipe.servingAmount
+        servingsElement.textContent = "Number of servings: " + wantedRecipe.servingamount
         var str = wantedRecipe.ingredients
         var res = str.split(",");
         res = res.filter((ing) => ing.trim().length !== 0)

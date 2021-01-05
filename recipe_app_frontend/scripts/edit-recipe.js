@@ -2,7 +2,7 @@ const recipeID = location.hash.substring(1)
 let recipeData = {
     name: '',
     type: '',
-    servingAmount: '',
+    servingamount: '',
     ingredients: '',
     directions: '',
     id: recipeID
@@ -39,13 +39,13 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         }
         titleElement.value = wantedRecipe.name
         typeElement.value = wantedRecipe.type
-        servingsElement.value = wantedRecipe.servingAmount
+        servingsElement.value = wantedRecipe.servingamount
         ingredientsElement.value = wantedRecipe.ingredients
         directionsElement.value = wantedRecipe.directions
 
         recipeData.name = wantedRecipe.name
         recipeData.type = wantedRecipe.type
-        recipeData.servingAmount = wantedRecipe.servingAmount
+        recipeData.servingamount = wantedRecipe.servingamount
         recipeData.ingredients = wantedRecipe.ingredients
         recipeData.directions = wantedRecipe.directions
     })
@@ -55,7 +55,7 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
     e.preventDefault()
     recipeData.name = e.target[0].value
     recipeData.type = e.target[1].value
-    recipeData.servingAmount = e.target[2].value
+    recipeData.servingamount = e.target[2].value
     recipeData.ingredients = e.target[3].value
     recipeData.directions = e.target[4].value
     let userID = localStorage.getItem("id")
