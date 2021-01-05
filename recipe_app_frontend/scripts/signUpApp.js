@@ -53,7 +53,7 @@ document.querySelector('#sign-up-form').addEventListener('submit', (e) => {
                     localStorage.setItem("id", data1["User Info"].data.id)
                     localStorage.setItem("token", data1["User Info"].Token)
                     location.assign(`/user.html`)
-                })
+                }).catch(err => console.log(err))
             })
         })
     })
