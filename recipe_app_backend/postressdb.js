@@ -1,10 +1,10 @@
 const {Client} = require('pg')
 
-const connectionString = process.env.DATABASE_URL
-
 const client = new Client({
-    client: 'pg',
-    connection: connectionString
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 })
 client.connect()
 client.query('SELECT NOW()', (err, res) => {
