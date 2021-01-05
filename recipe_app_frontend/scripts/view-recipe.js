@@ -33,9 +33,7 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
         servingsElement.textContent = "Number of servings: " + wantedRecipe.servingAmount
         var str = wantedRecipe.ingredients
         var res = str.split(",");
-        for(ing in res) {
-            ing.trim()
-        }
+        res = res.filter((ing) => ing.trim().length !== 0)
         let count = 0;
         res.forEach((element) => {
             count++
@@ -43,11 +41,9 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
             newElement.textContent = element
             ingredientsElement.appendChild(newElement)
         });
-        var strDir = wantedRecipe.directions
-        var resDir = strDir.split(".");
-        for(dir in resDir) {
-            dir.trim()
-        }
+        let strDir = wantedRecipe.directions
+        let resDir = strDir.split(".");
+        resDir = resDir.filter((dir) => dir.trim().length !== 0)
         const resDirLength = resDir.length;
         let countDir = 0;
         resDir.forEach((element) => {
