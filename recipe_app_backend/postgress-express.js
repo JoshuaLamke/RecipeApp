@@ -35,16 +35,15 @@ app.listen(process.env.PORT, () => {
 
 //Define root
 app.get("/",(req, res, next) => {
-    var sql = "select * from users"
-    var params = []
-    db.query(sql, params, (err, response) => {
+    var sql = "select NOW() from users"
+    db.query(sql, (err, response) => {
         if (err) {
           res.status(400).json({"error":err.message});
           return;
         }
         res.json({
-            "message":"success",
-            "data":response.rows
+            "message":"success, connected to database",
+            "time": response.rows[0]
         })
       });
 });
