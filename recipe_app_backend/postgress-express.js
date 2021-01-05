@@ -35,7 +35,6 @@ app.listen(process.env.PORT, () => {
 
 //Define root
 app.get("/",(req, res, next) => {
-    res.send({message: "connected"});
     var sql = "select * from users"
     var params = []
     db.query(sql, params, (err, response) => {
