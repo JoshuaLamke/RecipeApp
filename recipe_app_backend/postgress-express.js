@@ -329,7 +329,8 @@ app.post("/api/recipe/update", auth, (req, res) => {
         directions: directions,
         id: id
     }
-    db.query(sql, params, (err) => {
+    console.log(data)
+    db.query(sql, params, (err, response) => {
         if(err) {
             res.status(400).json({
                 "error": err.message

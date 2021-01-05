@@ -56,8 +56,6 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
     recipeData.name = e.target[0].value
     recipeData.type = e.target[1].value
     recipeData.servingAmount = e.target[2].value
-    setTimeout(() => {},5000)
-    alert(e.target[2])
     recipeData.ingredients = e.target[3].value
     recipeData.directions = e.target[4].value
     let userID = localStorage.getItem("id")
@@ -75,7 +73,7 @@ document.querySelector('#recipe-edit').addEventListener('submit', (e) => {
                 console.log(actualData.status)
             }
             console.log(actualData)
-            //location.assign(`/view-recipe.html#${recipeID}`)
+            location.assign(`/view-recipe.html#${recipeID}`)
         })
     })
 
