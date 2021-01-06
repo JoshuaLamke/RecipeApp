@@ -33,6 +33,7 @@ const generateSmallRecipeDOM = (recipe) => {
     // titleElement.classList.add('list-item__title')
     // titleElement.appendChild(textElement)
     titleElement.setAttribute('href', `/view-recipe.html#${recipe.id}`)
+    titleElement.style.fontSize = "125%";
     recipeElement.appendChild(titleElement)
     recipeElement.setAttribute("id", "item")
     recipeElement.classList.add('recipeItem')
@@ -128,61 +129,73 @@ const renderRecipes = (recipeList, filters) => {
                 const noBMessage = document.createElement('p')
                 noBMessage.textContent = 'No breakfast recipes'
                 noBMessage.classList.add('none-message')
+                noBMessage.style.fontSize = "125%";
                 breakfastGroup.appendChild(noBMessage)
             }
             if (lunchCounter === 0) {
                 const noLMessage = document.createElement('p')
                 noLMessage.textContent = 'No lunch recipes'
                 noLMessage.classList.add('none-message')
+                noLMessage.style.fontSize = "125%";
                 lunchGroup.appendChild(noLMessage)
             }
             if (dinnerCounter === 0) {
                 const noDMessage = document.createElement('p')
                 noDMessage.textContent = 'No dinner recipes'
                 noDMessage.classList.add('none-message')
+                noDMessage.style.fontSize = "125%";
                 dinnerGroup.appendChild(noDMessage)
             }
             if (dessertCounter === 0) {
                 const noDEMessage = document.createElement('p')
-                noDEMessage.textContent = 'No desser recipes'
+                noDEMessage.textContent = 'No dessert recipes'
                 noDEMessage.classList.add('none-message')
+                noDEMessage.style.fontSize = "125%";
                 dessertGroup.appendChild(noDEMessage)
             }
             if (snackCounter === 0) {
                 const noSMessage = document.createElement('p')
                 noSMessage.textContent = 'No snack recipes'
                 noSMessage.classList.add('none-message')
+                noSMessage.style.fontSize = "125%";
                 snackGroup.appendChild(noSMessage)
             }
             if (otherCounter === 0) {
                 const noOMessage = document.createElement('p')
                 noOMessage.textContent = 'No other recipes'
                 noOMessage.classList.add('none-message')
+                noOMessage.style.fontSize = "125%";
                 otherGroup.appendChild(noOMessage)
             }
             const bLabel = document.createElement('label')
             bLabel.setAttribute('for', 'breakfastGroup')
             bLabel.textContent = 'Breakfast: \r\n'
+            bLabel.style.fontSize = "125%";
 
             const lLabel = document.createElement('label')
             lLabel.setAttribute('for', 'lunchGroup')
             lLabel.textContent = 'Lunch: \r\n'
+            lLabel.style.fontSize = "125%";
 
             const dLabel = document.createElement('label')
             dLabel.setAttribute('for', 'dinnerGroup')
             dLabel.textContent = 'Dinner: \r\n'
+            dLabel.style.fontSize = "125%";
 
             const deLabel = document.createElement('label')
             deLabel.setAttribute('for', 'dessertGroup')
             deLabel.textContent = 'Dessert: \r\n'
+            deLabel.style.fontSize = "125%";
 
             const sLabel = document.createElement('label')
             sLabel.setAttribute('for', 'snackGroup')
             sLabel.textContent = 'Snack: \r\n'
+            sLabel.style.fontSize = "125%";
 
             const oLabel = document.createElement('label')
             oLabel.setAttribute('for', 'otherGroup')
             oLabel.textContent = 'Other: \r\n'
+            oLabel.style.fontSize = "125%";
             //This will occus if there as at least one type that has at least one recipe
             if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
                 //Adding all the labels and type groups here, remember that this will only occur if sorting by type
