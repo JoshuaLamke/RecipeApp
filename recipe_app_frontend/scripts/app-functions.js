@@ -26,13 +26,14 @@ const loadUpUserPage = (userID, filters) => {
 const generateSmallRecipeDOM = (recipe) => {
     const recipeElement = document.createElement('div')
     const titleElement = document.createElement('a')
-    const textElement = document.createAttribute('h1')
+    const textElement = document.createAttribute('p')
     // const viewElement = document.createElement('button')
 
     titleElement.innerText = recipe.name
     // titleElement.classList.add('list-item__title')
     // titleElement.appendChild(textElement)
     titleElement.setAttribute('href', `/view-recipe.html#${recipe.id}`)
+    titleElement.style.fontSize = "125%";
     recipeElement.appendChild(titleElement)
     recipeElement.setAttribute("id", "item")
     recipeElement.classList.add('recipeItem')
@@ -78,7 +79,7 @@ const renderRecipes = (recipeList, filters) => {
     recipeList = sortRecipes(recipeList, filters.sortBy)
     const filteredRecipes = recipeList.filter((recipe) => recipe.name.toLowerCase().includes(filters.searchText.toLowerCase()))
 
-    recipesElement.innerHTML = '<h1></h1>'
+    recipesElement.innerHTML = '<p></p>'
 
     //These counters will serve a purpose if sorting by type, which is the default
     var breakfastCounter = 0
