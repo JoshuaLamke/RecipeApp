@@ -7,6 +7,7 @@ let db = require('./postressdb');
 //require cors middleware 
 app.use(cors())
 
+
 //Require md5 (for password hashing)
 let md5 = require('md5');
 
