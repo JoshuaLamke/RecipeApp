@@ -1,12 +1,12 @@
 //Require Express and create app
 let express = require('express');
+let cors = require('cors')
 let app = express();
 
 //Import database
 let db = require('./postressdb');
 
-//require cors middleware
-let cors = require('cors') 
+//require cors middleware 
 app.use(cors())
 
 //Require md5 (for password hashing)
@@ -23,8 +23,6 @@ require('dotenv').config();
 
 //Import body parser for post requests
 let bodyParser = require('body-parser');
-const { user } = require('./postressdb');
-const { response } = require('express');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
