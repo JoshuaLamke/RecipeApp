@@ -2,12 +2,10 @@
 let express = require('express');
 let cors = require('cors')
 let app = express();
-
+app.options('*', cors())
 //Import database
 let db = require('./postressdb');
-app.options('*', cors())
 //require cors middleware 
-app.use(cors())
 
 
 //Require md5 (for password hashing)
