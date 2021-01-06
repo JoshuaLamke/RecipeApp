@@ -1,3 +1,6 @@
+* {
+    font-family: 'Georgia';
+}
 #container {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -65,35 +68,13 @@ label {
     font-size: 2.5rem;
     margin-bottom: .4rem;
 }
-
-#return-button:hover {
-    background: #396684;;
+.btn-lg {
+    width: 175px;
 }
-
-#delete-button:hover {
-    background: #396684;;
+label {
+    font-weight: 600;
 }
-
-#edit-button:hover {
-    background: #396684;;
-}
-
-#return-button {
-    background-color: white;
-    font-weight: bold;
-}
-
-#edit-button {
-    background-color: white;
-    font-weight: bold;
-}
-
-#delete-button {
-    background-color: red;
-    font-weight: bold;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
+.btn-lg:hover {
+    transform: scale(1.1);
+    transition-duration: 0.5s;
 }

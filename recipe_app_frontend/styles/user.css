@@ -1,3 +1,6 @@
+* {
+    font-family: 'Georgia';
+}
 #label {
     background: lightskyblue!important;
     padding: 1.2rem 1.6rem;
