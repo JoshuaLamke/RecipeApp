@@ -11,6 +11,10 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newUserData)
     }).then((response) => {
+        if(response.status === 404) {
+            alert('Invalid login credientials');
+            return;
+        }
         response.json().then(function(data1) {
             localStorage.setItem("id", data1["User Info"].data.id)
             localStorage.setItem("token", data1["User Info"].Token)
