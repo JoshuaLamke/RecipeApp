@@ -9,7 +9,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
     fetch("https://recipe-app-jg.herokuapp.com/api/user/login", {
         method: 'POST',
         headers: {"Content-Type": "application/json",
-        'Access-Control-Allow-Origin':'*'},
+        'Access-Control-Allow-Origin':'http://recipe-app-jg.netlify.app'},
         body: JSON.stringify(newUserData)
     }).then((response) => {
         response.json().then(function(data1) {
