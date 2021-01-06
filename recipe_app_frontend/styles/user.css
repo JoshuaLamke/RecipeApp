@@ -63,5 +63,8 @@ a {
 
 button {
     width: 200px;
-    font-weight: 600;
+}
+.btn-lg:hover {
+    transform: scale(1.1);
+    transition-duration: 0.5s;
 }
