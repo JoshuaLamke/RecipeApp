@@ -10,16 +10,34 @@ body {
 #login-info {
     padding-top: 2rem;
 }
-input {
-    padding: 1rem;
-    margin: 1rem;
-}
 .btn-lg {
     width: 90%;
 }
 .btn-lg:hover {
     transform: scale(1.1);
+    transition-duration: 0.5s;
 }
 #submit-btn {
     width: 98%;
 }
+input {
+    padding: 1rem;
+    margin: 2vh;
+    width: 100%;
+    border: none;
+    background-color: lightskyblue;
+    color: black;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+input:focus {
+    outline: none;
+    border-bottom: 1px solid blue;
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    border-radius: 0;
+}
+input::placeholder {
+    color: white;
+}
+

@@ -25,7 +25,13 @@ body {
 p {
     padding-left: 1rem;
 }
-
+.btn{
+    width: 200px;
+}
+.btn:hover {
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+}
 input {
     padding: 1rem;
     margin: 2vh;
