@@ -26,13 +26,24 @@ p {
     padding-left: 1rem;
 }
 
-#sign-up-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 input {
     padding: 1rem;
-    margin: 1rem;
+    margin: 2vh;
     width: 100%;
+    border: none;
+    background-color: lightskyblue;
+    color: black;
+    border-bottom: 1px solid black;
+    border-radius: 0;
 }
+input:focus {
+    outline: none;
+    border-bottom: 1px solid blue;
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    border-radius: 0;
+}
+input::placeholder {
+    color: white;
+}
+
