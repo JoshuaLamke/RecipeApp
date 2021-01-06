@@ -6,20 +6,12 @@
     font-size: 2.5rem;
     margin-bottom: .4rem;
 }
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0rem;
-}
-
 label {
     font-weight: bold;
     padding: 0.2rem;
     padding-left: 0rem;
     white-space: pre;
 }
-
 .actions {
     align-items: center;
     display: flex;

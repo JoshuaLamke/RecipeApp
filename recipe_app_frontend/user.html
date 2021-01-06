@@ -4,43 +4,46 @@
         <title>Recipe App: Save Your Recipes!</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="./styles/user.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div id="label" class="d-flex justify-content-center">
+        <div id="label" class="d-flex justify-content-center container-fluid">
             <h1 id = "title">Recipe App</h1>
         </div>
-        <div class="actions">
-            <div class = "actions__container container-fluid d-flex w-100 d-flex flex-column align-items-center" id="container">
+        <div class="actions container-fluid">
+            <div class = "actions__container container-fluid d-flex d-flex flex-column align-items-center" id="container">
                 <div id="greeting"></div>
-                <div class="row w-100">
-                    <div class="col-3"></div>
-                    <div class="col-6 d-flex justify-content-center">
-                        <input id = "search-text" type = "text" class = "input mr-5" placeholder = "Search for recipe">
-                        <select id = "filter-by" class = "dropdown">
-                        <!-- <option value = "byEdited">Sort by last edited</option> -->
-                        <option value = "byType">Sort by type</option>
-                        <option value = "alphabetical">Sort alphabetically</option>
-                        <option value = "byCreated">Sort by recently created</option>
-                        </select>
-                    </div>
-                    <div class="col-3 d-flex justify-content-end">
-                        <button id="log-out" class="btn btn-primary ml-auto">Log Out</button>
+                <div class="row w-100 d-flex">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="form-group">
+                            <input id = "search-text" type = "text" class = "input mb-2 form-control" placeholder = "Search for recipe">
+                            <select id = "filter-by" class = "dropdown form-control">
+                            <!-- <option value = "byEdited">Sort by last edited</option> -->
+                            <option value = "byType">Sort by type</option>
+                            <option value = "alphabetical">Sort alphabetically</option>
+                            <option value = "byCreated">Sort by recently created</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id = "wrapper" class="d-flex flex-column align-items-center">
-            <label  id="main-label" for="recipeList">Recipes: (Click on a recipe below to view it!)</label>
+        <div id="wrapper" class="container d-flex flex-column align-items-center">
+            <h2  id="main-label" for="recipeList">Recipes: (Click on a recipe below to view it!)</h2>
             <br>
             <div id="recipeList">
                 
             </div>
             <br>
-            <div id="general" class="mb-5">
-                <button id="create-recipe">Create Recipe!</button>
+            <div id="general" class="mb-5 row">
+                <button id="create-recipe" class="btn-lg btn-primary">Create Recipe!</button>
             </div>
         </div>
-        
+        <div class="row mb-5">
+            <div class="col-12 d-flex justify-content-center">
+                <button id="log-out" class="btn-lg btn-primary">Log Out</button>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
