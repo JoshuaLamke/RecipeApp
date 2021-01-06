@@ -42,6 +42,7 @@ app.get("/",(req, res, next) => {
             "message":"success, connected to database",
             "time": response.rows[0]
         })
+        
       });
 });
 
@@ -58,7 +59,7 @@ app.post("/api/user/login", (req, res) => {
             return;
         }
         else {
-            if(!response.rows) {
+            if(response.rowCount === 0) {
                 res.status(404).send({"error": "Could not find user with that login information, try again or sign up."});
             }
             else{
