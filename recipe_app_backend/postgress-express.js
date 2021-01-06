@@ -5,12 +5,10 @@ let app = express();
 
 //Import database
 let db = require('./postressdb');
-
+app.options('*', cors())
 //require cors middleware 
-let corsOptions = {
-    origin: 'https://recipe-app-jg.netlify.app/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+app.use(cors())
+
 
 //Require md5 (for password hashing)
 let md5 = require('md5');
@@ -35,7 +33,7 @@ app.listen(process.env.PORT, () => {
 });
 
 //Define root
-app.get("/", (req, res, next) => {
+app.get("/",(req, res, next) => {
     var sql = "select NOW() from users"
     db.query(sql, (err, response) => {
         if (err) {
@@ -51,7 +49,7 @@ app.get("/", (req, res, next) => {
 
 // Get a user based on email and password
 // Used for getting user info after they log in to the app
-app.post("/api/user/login", cors(corsOptions), (req, res) => {
+app.post("/api/user/login", (req, res) => {
     let sql = "SELECT * FROM users WHERE email = $1 AND password = $2";
     let params = [req.body.email, md5(req.body.password)];
     let userInfo;
@@ -99,7 +97,7 @@ app.post("/api/user/login", cors(corsOptions), (req, res) => {
 
 // Get user based on the user's id 
 // Not very useful but just there in case it is needed
-app.get("/api/user/:id", cors(corsOptions), (req, res) => {
+app.get("/api/user/:id", (req, res) => {
     var sql = "SELECT * FROM users WHERE id = $1"
     var params = [req.params.id]
     db.query(sql, params, (err, response) => {
@@ -116,7 +114,7 @@ app.get("/api/user/:id", cors(corsOptions), (req, res) => {
 
 // Get all users
 // Again not very useful but there if needed
-app.get("/api/users", cors(corsOptions),(req, res) => {
+app.get("/api/users", (req, res) => {
     var sql = "select * from users"
     var params = []
     db.query(sql, params, (err, response) => {
@@ -133,7 +131,7 @@ app.get("/api/users", cors(corsOptions),(req, res) => {
 
 // Create a new user
 // Used for creating a new profile when the user signs up
-app.post("/api/user/signup", cors(corsOptions),(req, res) => {
+app.post("/api/user/signup", (req, res) => {
     let errors = [];
     if(!req.body.password) {
         errors.push("No password specified.");
@@ -178,7 +176,7 @@ app.post("/api/user/signup", cors(corsOptions),(req, res) => {
 
 // Update a User's name. Pass in the new name and the id of the user.
 // Used when the user would like to change their name. Be sure to check if the name is empty and not let them update it like that.
-app.post("/api/user/update", cors(corsOptions), auth, (req, res) => {
+app.post("/api/user/update", auth, (req, res) => {
     let sql = "UPDATE users SET name = $1 WHERE id = $2";
     let params = [req.body.name, req.user.id];
     db.query(sql, params, (err) => {
@@ -197,7 +195,7 @@ app.post("/api/user/update", cors(corsOptions), auth, (req, res) => {
 
 // Delete a User
 // Used when the user wants to delete their account, pass in their username and password to delete
-app.delete("/api/user/delete",cors(corsOptions), auth, (req, res) => {
+app.delete("/api/user/delete", auth, (req, res) => {
     let sql = "DELETE FROM users WHERE email = $1 AND password = $2";
     let params = [req.user.email, req.user.password];
     console.log(req.user)
@@ -225,7 +223,7 @@ app.delete("/api/user/delete",cors(corsOptions), auth, (req, res) => {
 
 // Get recipes using a user's id 
 // Used to load the recipies for the user after they log in
-app.get("/api/recipes",cors(corsOptions), auth, (req, res) => {
+app.get("/api/recipes", auth, (req, res) => {
     let sql = "SELECT * FROM recipe WHERE userId = $1";
     let params = [req.user.id];
     db.query(sql, params, (err, response) => {
@@ -244,7 +242,7 @@ app.get("/api/recipes",cors(corsOptions), auth, (req, res) => {
 })
 
 // Get all recipes
-app.get("/api/allrecipes", cors(corsOptions), (req, res) => {
+app.get("/api/allrecipes", (req, res) => {
     var sql = "SELECT * FROM recipe"
     db.query(sql, (err, response) => {
         if (err) {
@@ -260,7 +258,7 @@ app.get("/api/allrecipes", cors(corsOptions), (req, res) => {
 
 // Create a new recipe
 // Used when the user wants to save a new recipe
-app.post("/api/recipe/",cors(corsOptions), auth, (req, res) => {
+app.post("/api/recipe/", auth, (req, res) => {
     let errors = [];
     if(!req.body.name) {
         errors.push("No name specified.");
@@ -313,7 +311,7 @@ app.post("/api/recipe/",cors(corsOptions), auth, (req, res) => {
 
 // Updates a recipe based on its id.
 // Use when user wants to update their recipe.
-app.post("/api/recipe/update", cors(corsOptions), auth, (req, res) => {
+app.post("/api/recipe/update", auth, (req, res) => {
     let name = req.body.name;
     let type = req.body.type;
     let servingAmount = req.body.servingAmount;
@@ -347,7 +345,7 @@ app.post("/api/recipe/update", cors(corsOptions), auth, (req, res) => {
 
 // Deletes a recipe based on the id
 // Used for when a user wants to delete a certain recipe
-app.delete("/api/recipe/:id", cors(corsOptions), auth, (req, res) => {
+app.delete("/api/recipe/:id", auth, (req, res) => {
     let sql = "DELETE FROM recipe WHERE id = $1";
     let params = [req.params.id];
     db.query(sql, params, (err, response) => {
@@ -372,7 +370,7 @@ app.delete("/api/recipe/:id", cors(corsOptions), auth, (req, res) => {
 })
 
 // Deletes all recipes in the database
-app.delete("/api/recipes", cors(corsOptions), (req, res) => {
+app.delete("/api/recipes", (req, res) => {
     let sql = "DELETE FROM recipe";
     let params = [];
     db.query(sql, params, (err, response) => {
