@@ -148,7 +148,7 @@ const renderRecipes = (recipeList, filters) => {
             }
             if (dessertCounter === 0) {
                 const noDEMessage = document.createElement('p')
-                noDEMessage.textContent = 'No desser recipes'
+                noDEMessage.textContent = 'No dessert recipes'
                 noDEMessage.classList.add('none-message')
                 noDEMessage.style.fontSize = "125%";
                 dessertGroup.appendChild(noDEMessage)
