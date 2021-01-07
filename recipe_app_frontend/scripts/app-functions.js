@@ -54,27 +54,27 @@ const renderRecipes = (recipeList, filters) => {
     //Will go through each type and create a div for it
     const breakfastGroup = document.createElement('div')
     breakfastGroup.setAttribute('id', 'breakfastType')
-    breakfastGroup.classList.add('typeLabel')
+    breakfastGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     const lunchGroup = document.createElement('div')
     lunchGroup.setAttribute('id', 'lunchType')
-    lunchGroup.classList.add('typeLabel')
+    lunchGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     const dinnerGroup = document.createElement('div')
     dinnerGroup.setAttribute('id', 'dinnerType')
-    dinnerGroup.classList.add('typeLabel')
+    dinnerGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     const dessertGroup = document.createElement('div')
     dessertGroup.setAttribute('id', 'dessertType')
-    dessertGroup.classList.add('typeLabel')
+    dessertGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     const snackGroup = document.createElement('div')
     snackGroup.setAttribute('id', 'snackType')
-    snackGroup.classList.add('typeLabel')
+    snackGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     const otherGroup = document.createElement('div')
     otherGroup.setAttribute('id', 'otherType')
-    otherGroup.classList.add('typeLabel')
+    otherGroup.classList.add('typeLabel', 'd-flex', 'flex-column', 'align-items-center')
 
     recipeList = sortRecipes(recipeList, filters.sortBy)
     const filteredRecipes = recipeList.filter((recipe) => recipe.name.toLowerCase().includes(filters.searchText.toLowerCase()))
@@ -202,7 +202,7 @@ const renderRecipes = (recipeList, filters) => {
             oLabel.textContent = 'Other: \r\n'
             oLabel.style.fontSize = "150%";
             oLabel.style.textDecoration = "underline"
-            
+
             //This will occus if there as at least one type that has at least one recipe
             if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
                 //Adding all the labels and type groups here, remember that this will only occur if sorting by type
