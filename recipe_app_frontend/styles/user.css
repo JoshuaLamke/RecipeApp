@@ -57,8 +57,15 @@ label {
 }
 
 a {
-    color: rgb(238, 55, 86);
+    color: rgb(255, 86, 114);
     text-decoration: none;
+    border: 2px solid rgb(255, 86, 114);
+    border-radius: 1rem;
+}
+
+a:hover {
+    font-size: 120%;
+    transition: 0.5s ease;
 }
 
 button {
