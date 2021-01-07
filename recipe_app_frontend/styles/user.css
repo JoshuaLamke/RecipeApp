@@ -59,12 +59,11 @@ label {
 a {
     color: rgb(253, 120, 142);
     text-decoration: none;
-    /* border-radius: 1rem; */
 }
 
 a:hover {
-    font-size: 120%;
-    transition: 0.5s ease;
+    font-size: 125%;
+    transition: 0.4s ease;
     color: rgb(252, 55, 88);
     border: 2px solid rgb(255, 55, 88);
     border-radius: 5px;
