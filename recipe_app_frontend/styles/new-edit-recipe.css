@@ -34,7 +34,7 @@
 }
 
 .container {
-    /* max-width: 60rem; */
+    max-width: 60rem;
     margin: 0 auto;
     padding: 0 1.6rem;
     padding-top: 1.6rem;
@@ -62,7 +62,7 @@ label {
 }
 
 * {
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
