@@ -73,6 +73,9 @@ a:hover {
 button {
     width: 200px;
 }
+.btn-lg {
+    transition: all .5s ease-in-out;
+}
 .btn-lg:hover {
     transform: scale(1.1);
     transition-duration: 0.5s;

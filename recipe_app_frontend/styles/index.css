@@ -16,6 +16,7 @@ body {
 }
 .btn-lg {
     width: 300px;
+    transition: all .5s ease-in-out;
 }
 .btn-lg:hover {
     transform: scale(1.1);

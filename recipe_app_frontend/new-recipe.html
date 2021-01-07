@@ -2,48 +2,60 @@
 <html>
     <head style="max-width: 100%; overflow-x: hidden;">
         <title>Recipe App: Save Your Recipes!</title>
-        <link href="/styles/new-edit-recipe.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="./styles/new-edit-recipe.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body style="max-width: 100%; overflow-x: hidden; position: relative;">
-        <div id="label">
+        <div id="label" class="d-flex justify-content-center">
             <h1 id="title">Recipe App</h1>
         </div>
-        <div id="sublabel">
+        <div id="sublabel" class="d-flex justify-content-center py-3 mb-2 ml-1">
             <h1 id="subtitle">Create your own recipe!</h1>
         </div>
         <div class="container" style="font-size: 130%;">
             <form id="new-recipe">
-                <label for="title-bar">Name:</label>
-                <input id="title-bar" type="text" placeholder="Title">
-                <label for="type-bar">Type:</label>
-                <select id = "filter-by" class = "dropdown">
-                    <option value = "Breakfast">Breakfast</option>
-                    <option value = "Lunch">Lunch</option>
-                    <option value = "Dinner">Dinner</option>
-                    <option value = "Dessert">Dessert</option>
-                    <option value = "Snack">Snack</option>
-                    <option value = "Other">Other</option>
-                </select>
-                <label for="serving-amount-bar">Amount of Servings:</label>
-                <input id="serving-amount-bar" type="number" min="1" max = "99" placeholder="Amount" style="width: 10%;">
-                <br>
-                <br>
-                <label for="ingredients-bar">Ingredients:</label>
-                <br>
-                <textarea id="ingredients-bar" rows="10" cols="50" type="text" placeholder="Seperate with commas! Example: 1 cup of milk, 2 grams of sugar, 2 eggs"></textarea>
-                <br>
-                <br>
-                <label for="directions-bar">Directions:</label>
-                <br>
-                <textarea cols="70" rows="10" id="directions-bar" type="text" placeholder="Seperate with periods! Example: Pour milk into bowl. Crack eggs and pour into bowl. Mix well. Add sugar and then mix again. "></textarea>
-                <input id = "submit-button"type="submit" placeholder="Update Recipe">
+                <div class="form-group d-flex">
+                    <label for="title-bar" class="mr-2">Name:</label>
+                    <input id="title-bar" type="text" class="form-control">
+                </div>
+                <div class="form-group d-flex">
+                    <label for="type-bar" class="mr-2">Type:</label>
+                    <select id = "filter-by" class = "dropdown form-control">
+                        <option value = "Breakfast">Breakfast</option>
+                        <option value = "Lunch">Lunch</option>
+                        <option value = "Dinner">Dinner</option>
+                        <option value = "Dessert">Dessert</option>
+                        <option value = "Snack">Snack</option>
+                        <option value = "Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group d-flex">
+                    <label for="serving-amount-bar" class="mr-2">Servings:</label>
+                    <input id="serving-amount-bar" type="number" min="1" max = "99" class="form-control" placeholder="Amount">
+                </div>
+                <div class="form-group d-flex flex-column">
+                    <label for="ingredients-bar">Ingredients (Seperate with commas):</label>
+                    <textarea id="ingredients-bar" rows="10" type="text" class="form-control" placeholder="Seperate with commas! Example: 1 cup of milk, 2 grams of sugar, 2 eggs"></textarea>
+                </div>
+                <div class="form-group d-flex flex-column">
+                    <label for="directions-bar">Directions (Write full sentences):</label>
+                    <textarea  rows="10" id="directions-bar"  class="form-control" type="text" placeholder="Seperate with periods! Example: Pour milk into bowl. Crack eggs and pour into bowl. Mix well. Add sugar and then mix again. "></textarea>
+                </div>
+                <div class="form-group">
+                    <input id = "submit-button" class="form-control btn-lg btn-primary" type="submit" placeholder="Update Recipe">
+                </div>
             </form>
-            <form id="cancel">
-                <input id = "cancel-button" type="submit" value="Cancel">
+            <form id="cancel" class="mb-5">
+                <div class="form-group">
+                    <input id = "cancel-button" class="form-control btn-lg btn-dark" type="submit" value="Cancel">
+                </div>
             </form>
         </div>
-        <script src="/scripts/app-functions.js"></script>
-        <script src="/scripts/new-recipe.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="./scripts/app-functions.js"></script>
+        <script src="./scripts/new-recipe.js"></script>
     </body>
 </html>

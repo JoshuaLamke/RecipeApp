@@ -1,68 +1,16 @@
 * {
     font-family: 'Georgia';
 }
-
 #label {
     background: lightskyblue;
     padding: 1.2rem 1.6rem;
 }
-
 #sublabel {
-    align-items: center;
-    display: flex;
     background-color: #F7F7F7;
-    border-bottom: 1px solid #dedfe0;
-    padding: 0 1.6rem;  
-    padding-bottom: 0.4rem;
-    padding-top: 0.4rem;
 }
-
-
-#subtitle {
-    font-size: 1.6rem;
-    font-weight: 900;
+.btn-lg {
+    transition: all .5s ease-in-out;
 }
-
-.header {
-    padding: 1.2rem 1.2rem;
-    background: lightskyblue;
-}
-
-#title {
-    font-size: 2.5rem;
-    margin-bottom: .4rem;
-}
-
-.container {
-    /* max-width: 60rem; */
-    margin: 0 auto;
-    padding: 0 1.6rem;
-    padding-top: 1.6rem;
-}
-
-#submit-button {
-    background: lightskyblue;
-    font-weight: bold;
-}
-
-#submit-button:hover {
-    background: #396684;
-}
-
-#cancel-button {
-    font-weight: bold;
-}
-
-#cancel-button:hover {
-    background: #396684;
-}
-
-label {
-    font-weight: 550;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.btn-lg:hover {
+    transform: scale(1.025);
 }
