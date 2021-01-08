@@ -36,10 +36,10 @@ label {
     margin-bottom: 0.3rem;
 }
 
-/* #wrapper {
-    padding: 0 1.6rem;
+#wrapper {
+    /* padding: 0 1.6rem; */
     padding-top: 0.5rem;
-} */
+}
 
 #main-label {
     font-size: 135%;
