@@ -28,10 +28,6 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
             location.assign('/user.html')
             alert("Sorry! Looks like there was a mistake")
         }
-        console.log(wantedRecipe)
-        debugger
-        console.log(wantedRecipe.img)
-        debugger
         titleElement.textContent = wantedRecipe.name
         typeElement.textContent = "Type: " + wantedRecipe.type
         servingsElement.textContent = "Servings: " + wantedRecipe.servingamount
