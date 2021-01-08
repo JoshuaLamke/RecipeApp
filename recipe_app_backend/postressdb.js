@@ -6,9 +6,6 @@ const client = new Client({
         rejectUnauthorized: false
     }
 })
-// const client = new Client({
-//     connectionString: "postgres://postgres:joshua@localhost:5432/recipe-app-db"
-// })
 client.connect()
 client.query('SELECT NOW()', (err, res) => {
     if(err) {
@@ -54,26 +51,6 @@ client.query(table2sql, (err, res) => {
     }
     else {
         console.log("recipes table successfully created")
-    }
-})
-const alterUserTableSQL = `ALTER TABLE users
-ADD img TEXT;`
-client.query(alterUserTableSQL, (err, res) => {
-    if(err) {
-        console.log("something went wrong...")
-    }
-    else{
-        console.log("added image column to users table")
-    }
-})
-const alterRecipeTableSQL = `ALTER TABLE recipe
-ADD img TEXT;`
-client.query(alterRecipeTableSQL, (err, res) => {
-    if(err) {
-        console.log("something went wrong...")
-    }
-    else{
-        console.log("added image column to recipe table")
     }
 })
 module.exports = client

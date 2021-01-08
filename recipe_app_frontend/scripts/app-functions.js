@@ -297,7 +297,7 @@ const sortRecipes = (recipeList, sortBy) => {
 }
 
 //Creates a new recipe, saves it into the databse using fetch, and reloads the user page with the new recipe added
-const createRecipe = (userID, recipeData) => {
+const createRecipe = (userID, recipeData, img) => {
     let fetchRecipeData = {
         name: recipeData.title,
         type: recipeData.type,
@@ -321,6 +321,14 @@ const createRecipe = (userID, recipeData) => {
                 console.log(actualData.status)
             }
             console.log(actualData);
+            if(img.value) {
+                let recipeID = actualData.ID
+                const reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    localStorage.setItem(`${userID}${recipeID}`, reader.result)
+                })
+                reader.readAsDataURL(img.files[0])
+            }
             location.assign('/user.html');
         })
     }).catch((err) => {
