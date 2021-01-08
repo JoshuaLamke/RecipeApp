@@ -4,8 +4,11 @@ document.querySelector('#name-change-form').addEventListener('submit', (e) => {
         name: ''
     }
     newName.name = e.target[0].value
-    if (newName.name === '') {
-        alert('Please input a new name')
+
+    var res = newName.name.split(",");
+    res = res.filter((ing) => ing.trim().length !== 0)
+    if (res) {
+        alert('Please enter a new name')
         return
     }
     var userToken = localStorage.getItem("token")
