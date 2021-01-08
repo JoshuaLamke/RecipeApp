@@ -85,42 +85,42 @@ const renderRecipes = (recipeList, filters) => {
     //Creating and adding the labels to their respective div groups
     const bLabel = document.createElement('label')
     bLabel.setAttribute('for', 'breakfastGroup')
-    bLabel.textContent = 'Breakfast Recipes'
+    bLabel.textContent = 'Breakfast'
     bLabel.style.fontSize = "150%";
     bLabel.style.textDecoration = "underline"
     breakfastGroup.appendChild(bLabel)
 
     const lLabel = document.createElement('label')
     lLabel.setAttribute('for', 'lunchGroup')
-    lLabel.textContent = 'Lunch Recipes'
+    lLabel.textContent = 'Lunch'
     lLabel.style.fontSize = "150%";
     lLabel.style.textDecoration = "underline"
     lunchGroup.appendChild(lLabel)
 
     const dLabel = document.createElement('label')
     dLabel.setAttribute('for', 'dinnerGroup')
-    dLabel.textContent = 'Dinner Recipes'
+    dLabel.textContent = 'Dinner'
     dLabel.style.fontSize = "150%";
     dLabel.style.textDecoration = "underline"
     dinnerGroup.appendChild(dLabel)
 
     const deLabel = document.createElement('label')
     deLabel.setAttribute('for', 'dessertGroup')
-    deLabel.textContent = 'Dessert Recipes'
+    deLabel.textContent = 'Dessert'
     deLabel.style.fontSize = "150%";
     deLabel.style.textDecoration = "underline"
     dessertGroup.appendChild(deLabel)
 
     const sLabel = document.createElement('label')
     sLabel.setAttribute('for', 'snackGroup')
-    sLabel.textContent = 'Snack Recipes'
+    sLabel.textContent = 'Snack'
     sLabel.style.fontSize = "150%";
     sLabel.style.textDecoration = "underline"
     snackGroup.appendChild(sLabel)
 
     const oLabel = document.createElement('label')
     oLabel.setAttribute('for', 'otherGroup')
-    oLabel.textContent = 'Other Recipes'
+    oLabel.textContent = 'Other'
     oLabel.style.fontSize = "150%";
     oLabel.style.textDecoration = "underline"
     otherGroup.appendChild(oLabel)
