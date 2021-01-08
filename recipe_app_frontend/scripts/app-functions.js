@@ -329,7 +329,7 @@ const createRecipe = (userID, recipeData, img) => {
                 })
                 reader.readAsDataURL(img.files[0])
             }
-            location.assign('/user.html');
+            //location.assign('/user.html');
         })
     }).catch((err) => {
         console.log(err)
