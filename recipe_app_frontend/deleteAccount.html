@@ -12,31 +12,28 @@
         </div>
         <div class="actions container-fluid">
             <div class = "actions__container container-fluid d-flex d-flex flex-column align-items-center" id="container">
-                <div id="greeting"></div>
                 <div class="row w-100 d-flex">
                     <div class="col-12 d-flex justify-content-center">
-                        <h1>User Settings</h1>
+                        <h1>Account Deletion</h1>
                     </div>
                 </div>
             </div>
         </div>
         <div id="wrapper" class="container d-flex flex-column align-items-center">
-            
+            <h2>Are you sure you wish to delete your account?</h2>
+            <h4>All recipes will be lost from this account!</h4>
+            <br>
+            <h4>THIS CANNOT BE UNDONE!</h4>
         </div>
         <div class="container">
             <div class="mb-5 row">
-                <div id="changing-name-div" class="col-12 d-flex justify-content-center">
-                    <button id="change-name-button" class="btn-lg btn-primary">Change Name</button>
+                <div class="col-12 d-flex justify-content-center">
+                    <button id="destroy-button" class="btn-lg" style="background: crimson; color: white;">Yes, delete my account as well as all of my recipes</button>
                 </div>
             </div>
             <div class="mb-5 row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button id="delete-button" class="btn-lg" style="background: crimson; color: white;">Delete Account</button>
-                </div>
-            </div>
-            <div class="mb-5 row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button id="return-button" class="btn-lg btn-dark">Return</button>
+                    <button id="cancel-button" class="btn-lg btn-dark">Nevermind, I'll keep my account</button>
                 </div>
             </div>
         </div>
@@ -44,6 +41,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="/scripts/app-functions.js"></script>
-        <script src="/scripts/settings.js"></script>
+        <script src="/scripts/deleteAccount.js"></script>
     </body>
 </html>
