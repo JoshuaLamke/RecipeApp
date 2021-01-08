@@ -85,7 +85,7 @@ const renderRecipes = (recipeList, filters) => {
     //Creating and adding the labels to their respective div groups
     const bLabel = document.createElement('label')
     bLabel.setAttribute('for', 'breakfastGroup')
-    bLabel.textContent = 'Breakfast \r\n'
+    bLabel.textContent = 'Breakfast'
     bLabel.style.fontSize = "150%";
     bLabel.style.textDecoration = "underline"
     breakfastGroup.appendChild(bLabel)
@@ -99,7 +99,7 @@ const renderRecipes = (recipeList, filters) => {
 
     const dLabel = document.createElement('label')
     dLabel.setAttribute('for', 'dinnerGroup')
-    dLabel.textContent = 'Dinner \r\n'
+    dLabel.textContent = 'Dinner'
     dLabel.style.fontSize = "150%";
     dLabel.style.textDecoration = "underline"
     dinnerGroup.appendChild(dLabel)
