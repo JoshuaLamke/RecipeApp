@@ -53,26 +53,32 @@ const renderRecipes = (recipeList, filters) => {
 
     //Will go through each type and create a div for it
     const breakfastGroup = document.createElement('div')
+    breakfastGroup.className = 'd-flex flex-column align-items-center'
     breakfastGroup.setAttribute('id', 'breakfastType')
     breakfastGroup.classList.add('typeLabel')
 
     const lunchGroup = document.createElement('div')
+    lunchGroup.className = 'd-flex flex-column align-items-center'
     lunchGroup.setAttribute('id', 'lunchType')
     lunchGroup.classList.add('typeLabel')
 
     const dinnerGroup = document.createElement('div')
+    dinnerGroup.className = 'd-flex flex-column align-items-center'
     dinnerGroup.setAttribute('id', 'dinnerType')
     dinnerGroup.classList.add('typeLabel')
 
     const dessertGroup = document.createElement('div')
+    dessertGroup.className = 'd-flex flex-column align-items-center'
     dessertGroup.setAttribute('id', 'dessertType')
     dessertGroup.classList.add('typeLabel')
 
     const snackGroup = document.createElement('div')
+    snackGroup.className = 'd-flex flex-column align-items-center'
     snackGroup.setAttribute('id', 'snackType')
     snackGroup.classList.add('typeLabel')
 
     const otherGroup = document.createElement('div')
+    otherGroup.className = 'd-flex flex-column align-items-center'
     otherGroup.setAttribute('id', 'otherType')
     otherGroup.classList.add('typeLabel')
 
