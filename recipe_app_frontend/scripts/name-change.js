@@ -4,6 +4,10 @@ document.querySelector('#name-change-form').addEventListener('submit', (e) => {
         name: ''
     }
     newName.name = e.target[0].value
+    if (newName.name === '') {
+        alert('Please input a new name')
+        return
+    }
     var userToken = localStorage.getItem("token")
     
     fetch("https://recipe-app-jg.herokuapp.com/api/user/update", {
