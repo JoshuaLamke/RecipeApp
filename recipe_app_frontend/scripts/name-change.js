@@ -7,7 +7,7 @@ document.querySelector('#name-change-form').addEventListener('submit', (e) => {
 
     var res = newName.name.split(",");
     res = res.filter((ing) => ing.trim().length !== 0)
-    if (res) {
+    if (res.length === 0) {
         alert('Please enter a new name')
         return
     }
