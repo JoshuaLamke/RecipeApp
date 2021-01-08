@@ -82,6 +82,49 @@ const renderRecipes = (recipeList, filters) => {
     otherGroup.setAttribute('id', 'otherType')
     otherGroup.classList.add('typeLabel')
 
+    //Creating and adding the labels to their respective div groups
+    const bLabel = document.createElement('label')
+    bLabel.setAttribute('for', 'breakfastGroup')
+    bLabel.textContent = 'Breakfast Recipes'
+    bLabel.style.fontSize = "150%";
+    bLabel.style.textDecoration = "underline"
+    breakfastGroup.appendChild(bLabel)
+
+    const lLabel = document.createElement('label')
+    lLabel.setAttribute('for', 'lunchGroup')
+    lLabel.textContent = 'Lunch Recipes'
+    lLabel.style.fontSize = "150%";
+    lLabel.style.textDecoration = "underline"
+    lunchGroup.appendChild(lLabel)
+
+    const dLabel = document.createElement('label')
+    dLabel.setAttribute('for', 'dinnerGroup')
+    dLabel.textContent = 'Dinner Recipes'
+    dLabel.style.fontSize = "150%";
+    dLabel.style.textDecoration = "underline"
+    dinnerGroup.appendChild(dLabel)
+
+    const deLabel = document.createElement('label')
+    deLabel.setAttribute('for', 'dessertGroup')
+    deLabel.textContent = 'Dessert Recipes'
+    deLabel.style.fontSize = "150%";
+    deLabel.style.textDecoration = "underline"
+    dessertGroup.appendChild(deLabel)
+
+    const sLabel = document.createElement('label')
+    sLabel.setAttribute('for', 'snackGroup')
+    sLabel.textContent = 'Snack Recipes'
+    sLabel.style.fontSize = "150%";
+    sLabel.style.textDecoration = "underline"
+    snackGroup.appendChild(sLabel)
+
+    const oLabel = document.createElement('label')
+    oLabel.setAttribute('for', 'otherGroup')
+    oLabel.textContent = 'Other Recipes'
+    oLabel.style.fontSize = "150%";
+    oLabel.style.textDecoration = "underline"
+    otherGroup.appendChild(oLabel)
+
     recipeList = sortRecipes(recipeList, filters.sortBy)
     const filteredRecipes = recipeList.filter((recipe) => recipe.name.toLowerCase().includes(filters.searchText.toLowerCase()))
 
@@ -173,56 +216,21 @@ const renderRecipes = (recipeList, filters) => {
                 noOMessage.style.fontSize = "125%";
                 otherGroup.appendChild(noOMessage)
             }
-            const bLabel = document.createElement('label')
-            bLabel.setAttribute('for', 'breakfastGroup')
-            bLabel.textContent = 'Breakfast \r\n'
-            bLabel.style.fontSize = "150%";
-            bLabel.style.textDecoration = "underline"
-
-            const lLabel = document.createElement('label')
-            lLabel.setAttribute('for', 'lunchGroup')
-            lLabel.textContent = 'Lunch \r\n'
-            lLabel.style.fontSize = "150%";
-            lLabel.style.textDecoration = "underline"
-
-            const dLabel = document.createElement('label')
-            dLabel.setAttribute('for', 'dinnerGroup')
-            dLabel.textContent = 'Dinner \r\n'
-            dLabel.style.fontSize = "150%";
-            dLabel.style.textDecoration = "underline"
-
-            const deLabel = document.createElement('label')
-            deLabel.setAttribute('for', 'dessertGroup')
-            deLabel.textContent = 'Dessert \r\n'
-            deLabel.style.fontSize = "150%";
-            deLabel.style.textDecoration = "underline"
-
-            const sLabel = document.createElement('label')
-            sLabel.setAttribute('for', 'snackGroup')
-            sLabel.textContent = 'Snack \r\n'
-            sLabel.style.fontSize = "150%";
-            sLabel.style.textDecoration = "underline"
-
-            const oLabel = document.createElement('label')
-            oLabel.setAttribute('for', 'otherGroup')
-            oLabel.textContent = 'Other \r\n'
-            oLabel.style.fontSize = "150%";
-            oLabel.style.textDecoration = "underline"
             
             //This will occus if there as at least one type that has at least one recipe
             if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
-                //Adding all the labels and type groups here, remember that this will only occur if sorting by type
-                recipesElement.appendChild(bLabel)
+                //Adding all the type groups here, remember that this will only occur if sorting by type
+                
                 recipesElement.appendChild(breakfastGroup)
-                recipesElement.appendChild(lLabel)
+                
                 recipesElement.appendChild(lunchGroup)
-                recipesElement.appendChild(dLabel)
+                
                 recipesElement.appendChild(dinnerGroup)
-                recipesElement.appendChild(deLabel)
+                
                 recipesElement.appendChild(dessertGroup)
-                recipesElement.appendChild(sLabel)
+                
                 recipesElement.appendChild(snackGroup)
-                recipesElement.appendChild(oLabel)
+                
                 recipesElement.appendChild(otherGroup)
             }
             //If every type group is empty it will just display the regular no recipes message

@@ -37,16 +37,12 @@ label {
 }
 
 #wrapper {
-    padding: 0 1.6rem;
+    /* padding: 0 1.6rem; */
     padding-top: 0.5rem;
 }
 
 #main-label {
     font-size: 135%;
-}
-
-#recipeList {
-    padding: 0.4rem;
 }
 
 .actions__container--spaced {

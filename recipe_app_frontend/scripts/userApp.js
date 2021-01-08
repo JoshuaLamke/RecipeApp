@@ -40,6 +40,11 @@ document.querySelector('#create-recipe').addEventListener('click', (e) => {
     location.assign("/new-recipe.html")
 })
 
+document.querySelector('#settings-button').addEventListener('click', (e) => {
+    e.preventDefault()
+    location.assign("/settings.html")
+})
+
 document.querySelector('#log-out').addEventListener('click', (e) => {
     e.preventDefault()
     localStorage.removeItem("id")
