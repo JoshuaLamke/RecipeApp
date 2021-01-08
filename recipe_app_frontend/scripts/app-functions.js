@@ -208,21 +208,21 @@ const renderRecipes = (recipeList, filters) => {
             oLabel.textContent = 'Other \r\n'
             oLabel.style.fontSize = "150%";
             oLabel.style.textDecoration = "underline"
-            
+
             //This will occus if there as at least one type that has at least one recipe
             if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
                 //Adding all the labels and type groups here, remember that this will only occur if sorting by type
-                recipesElement.appendChild(bLabel)
+                breakfastGroup.appendChild(bLabel)
                 recipesElement.appendChild(breakfastGroup)
-                recipesElement.appendChild(lLabel)
+                lunchGroup.appendChild(lLabel)
                 recipesElement.appendChild(lunchGroup)
-                recipesElement.appendChild(dLabel)
+                dinnerGroup.appendChild(dLabel)
                 recipesElement.appendChild(dinnerGroup)
-                recipesElement.appendChild(deLabel)
+                dessertGroup.appendChild(deLabel)
                 recipesElement.appendChild(dessertGroup)
-                recipesElement.appendChild(sLabel)
+                snackGroup.appendChild(sLabel)
                 recipesElement.appendChild(snackGroup)
-                recipesElement.appendChild(oLabel)
+                otherGroup.appendChild(oLabel)
                 recipesElement.appendChild(otherGroup)
             }
             //If every type group is empty it will just display the regular no recipes message
