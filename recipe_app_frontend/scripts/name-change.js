@@ -31,7 +31,7 @@ document.querySelector('#name-change-form').addEventListener('submit', (e) => {
             location.assign(`/user.html`)
         })
     }).catch((err) => { 
-        alert(err, " Could not find user with that login information, please try again or sign up to create a new account!")
+        alert(err, "Something went wrong, your name has not been changed")
     })
 })
 
