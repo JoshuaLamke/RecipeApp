@@ -1,9 +1,9 @@
 document.querySelector('#name-change-form').addEventListener('submit', (e) => {
     e.preventDefault()
-    const newName = {
+    var newName = {
         name: ''
     }
-    newName = e.target[0].value
+    newName.name = e.target[0].value
     var userToken = localStorage.getItem("token")
     
     fetch("https://recipe-app-jg.herokuapp.com/api/user/update", {
