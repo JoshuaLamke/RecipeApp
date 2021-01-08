@@ -170,32 +170,39 @@ const renderRecipes = (recipeList, filters) => {
             const bLabel = document.createElement('label')
             bLabel.setAttribute('for', 'breakfastGroup')
             bLabel.textContent = 'Breakfast \r\n'
-            bLabel.style.fontSize = "125%";
+            bLabel.style.fontSize = "150%";
+            bLabel.style.textDecoration = "underline"
 
             const lLabel = document.createElement('label')
             lLabel.setAttribute('for', 'lunchGroup')
             lLabel.textContent = 'Lunch \r\n'
-            lLabel.style.fontSize = "125%";
+            lLabel.style.fontSize = "150%";
+            lLabel.style.textDecoration = "underline"
 
             const dLabel = document.createElement('label')
             dLabel.setAttribute('for', 'dinnerGroup')
             dLabel.textContent = 'Dinner \r\n'
-            dLabel.style.fontSize = "125%";
+            dLabel.style.fontSize = "150%";
+            dLabel.style.textDecoration = "underline"
 
             const deLabel = document.createElement('label')
             deLabel.setAttribute('for', 'dessertGroup')
             deLabel.textContent = 'Dessert \r\n'
-            deLabel.style.fontSize = "125%";
+            deLabel.style.fontSize = "150%";
+            deLabel.style.textDecoration = "underline"
 
             const sLabel = document.createElement('label')
             sLabel.setAttribute('for', 'snackGroup')
             sLabel.textContent = 'Snack \r\n'
-            sLabel.style.fontSize = "125%";
+            sLabel.style.fontSize = "150%";
+            sLabel.style.textDecoration = "underline"
 
             const oLabel = document.createElement('label')
             oLabel.setAttribute('for', 'otherGroup')
             oLabel.textContent = 'Other \r\n'
-            oLabel.style.fontSize = "125%";
+            oLabel.style.fontSize = "150%";
+            oLabel.style.textDecoration = "underline"
+            
             //This will occus if there as at least one type that has at least one recipe
             if (breakfastCounter !== 0 || lunchCounter !== 0 || dinnerCounter !== 0 || dessertCounter !== 0 || snackCounter !== 0 || otherCounter !== 0) {
                 //Adding all the labels and type groups here, remember that this will only occur if sorting by type
