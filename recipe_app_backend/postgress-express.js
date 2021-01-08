@@ -2,11 +2,13 @@
 let express = require('express');
 let cors = require('cors')
 let app = express();
+let fileUpload = require('express-fileupload')
 //Import database
 let db = require('./postressdb');
 //require cors middleware 
 app.use(cors())
-
+//require image upload middleware
+app.use(fileUpload())
 
 //Require md5 (for password hashing)
 let md5 = require('md5');
@@ -287,10 +289,19 @@ app.post("/api/recipe/", auth, (req, res) => {
             "type": req.body.type,
             "servingAmount": req.body.servingAmount,
             "ingredients": req.body.ingredients,
-            "directions": req.body.directions
+            "directions": req.body.directions,
+            "img": req.body.img
         }
-        let sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
-        let params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
+        let sql;
+        let params;
+        if(data.img) {
+            sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions, img) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id";
+            params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions, data.img];
+        }
+        else {
+            sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
+            params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
+        }
         db.query(sql, params, (err, response) => {
             if(err) {
                 res.status(400).json({
