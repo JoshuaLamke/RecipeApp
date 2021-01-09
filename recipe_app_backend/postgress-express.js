@@ -303,9 +303,9 @@ app.post("/api/recipe/", auth, (req, res) => {
                 if(req.body.img) {
                     fs.appendFile(`./recipe-images/${data.userId} ${response.rows[0]}`, img, (err) => {
                         if(err) {
-                            alert('something went wrong')
+                            data.uploaded = 'false'
                         }
-                        alert('picture uploaded')
+                        data.uploaded = 'true'
                     })
                 }
                 res.json({
