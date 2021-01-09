@@ -1,3 +1,4 @@
+const fs = require('fs')
 //Require Express and create app
 let express = require('express');
 let cors = require('cors')
@@ -299,6 +300,20 @@ app.post("/api/recipe/", auth, (req, res) => {
                 });
             }
             else{
+                if(req.body.img.value) {
+                    let recipeID = response.rows[0].id
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        fs.writeFile(`./recipe-images/${userID} ${recipeID}`, reader.result, (err) => {
+                            if(err) {
+                                alert("Couldn't save picture.")
+                            } else {
+                                alert("Picture saved!")
+                            }
+                        })
+                    })
+                    reader.readAsDataURL(img.files[0])
+                }
                 res.json({
                     "message": "success",
                     "data": data,
