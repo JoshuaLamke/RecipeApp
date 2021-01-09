@@ -287,7 +287,8 @@ app.post("/api/recipe/", auth, (req, res) => {
             "type": req.body.type,
             "servingAmount": req.body.servingAmount,
             "ingredients": req.body.ingredients,
-            "directions": req.body.directions
+            "directions": req.body.directions,
+            "uploaded": 'false'
         }
         let sql;
         let params;
@@ -302,10 +303,10 @@ app.post("/api/recipe/", auth, (req, res) => {
             else{
                 if(req.body.img) {
                     fs.appendFile(`./recipe-images/${data.userId} ${response.rows[0]}`, img, (err) => {
-                        if(err) {
-                            data.uploaded = 'false'
+                        if(err) {}
+                        else{
+                            data.uploaded = 'true'
                         }
-                        data.uploaded = 'true'
                     })
                 }
                 res.json({
