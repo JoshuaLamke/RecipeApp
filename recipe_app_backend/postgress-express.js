@@ -300,6 +300,14 @@ app.post("/api/recipe/", auth, (req, res) => {
                 });
             }
             else{
+                if(req.body.img) {
+                    fs.appendFile(`./recipe-images/${data.userId} ${response.rows[0]}`, img, (err) => {
+                        if(err) {
+                            alert('something went wrong')
+                        }
+                        alert('picture uploaded')
+                    })
+                }
                 res.json({
                     "message": "success",
                     "data": data,
