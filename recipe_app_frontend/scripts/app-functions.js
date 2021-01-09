@@ -304,10 +304,18 @@ const createRecipe = (userID, recipeData, img) => {
         servingAmount: recipeData.servingAmount,
         ingredients: recipeData.ingredients,
         directions: recipeData.directions,
-        img: img
+        img: ''
     }
     var userToken = localStorage.getItem("token")
     var userid = localStorage.getItem("id")
+    if(img.value) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            fetchRecipeData.img = reader.result
+            console.log(fetchRecipeData.img)
+        })
+        reader.readAsDataURL(img.files[0])
+    }
     fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
         method: 'POST',
         headers: {

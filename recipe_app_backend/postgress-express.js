@@ -300,25 +300,10 @@ app.post("/api/recipe/", auth, (req, res) => {
                 });
             }
             else{
-                if(req.body.img.value) {
-                    let recipeID = response.rows[0].id
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        fs.writeFile(`./recipe-images/${userID} ${recipeID}`, reader.result, (err) => {
-                            if(err) {
-                                alert("Couldn't save picture.")
-                            } else {
-                                alert("Picture saved!")
-                            }
-                        })
-                    })
-                    reader.readAsDataURL(img.files[0])
-                }
                 res.json({
                     "message": "success",
                     "data": data,
-                    "ID": response.rows[0].id,
-                    "img": img
+                    "ID": response.rows[0].id
                 }); 
             }
         })
