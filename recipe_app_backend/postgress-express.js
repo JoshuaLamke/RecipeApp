@@ -300,7 +300,6 @@ app.post("/api/recipe/", auth, (req, res) => {
                 });
             }
             else{
-                alert(req.body.img)
                 if(req.body.img.value) {
                     let recipeID = response.rows[0].id
                     const reader = new FileReader();
@@ -318,7 +317,8 @@ app.post("/api/recipe/", auth, (req, res) => {
                 res.json({
                     "message": "success",
                     "data": data,
-                    "ID": response.rows[0].id
+                    "ID": response.rows[0].id,
+                    "img": img
                 }); 
             }
         })
