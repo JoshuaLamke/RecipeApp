@@ -300,6 +300,7 @@ app.post("/api/recipe/", auth, (req, res) => {
                 });
             }
             else{
+                console.log(req.body.img)
                 if(req.body.img.value) {
                     let recipeID = response.rows[0].id
                     const reader = new FileReader();

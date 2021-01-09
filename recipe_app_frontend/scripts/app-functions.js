@@ -322,7 +322,7 @@ const createRecipe = (userID, recipeData, img) => {
                 console.log(actualData.status)
             }
             console.log(actualData);
-            location.assign('/user.html');
+            //location.assign('/user.html');
         })
     }).catch((err) => {
         console.log(err)
