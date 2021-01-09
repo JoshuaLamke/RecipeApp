@@ -1,4 +1,3 @@
-const fs = require('fs')
 //Will load the user page including the recipes that the user has
 const loadUpUserPage = (userID, filters) => {
     recipeList = []
@@ -304,7 +303,8 @@ const createRecipe = (userID, recipeData, img) => {
         type: recipeData.type,
         servingAmount: recipeData.servingAmount,
         ingredients: recipeData.ingredients,
-        directions: recipeData.directions
+        directions: recipeData.directions,
+        img: img
     }
     var userToken = localStorage.getItem("token")
     var userid = localStorage.getItem("id")
@@ -322,20 +322,6 @@ const createRecipe = (userID, recipeData, img) => {
                 console.log(actualData.status)
             }
             console.log(actualData);
-            if(img.value) {
-                let recipeID = actualData.ID
-                const reader = new FileReader();
-                reader.addEventListener('load', () => {
-                    fs.writeFile(`../recipe-images/${userID} ${recipeID}`, reader.result, (err) => {
-                        if(err) {
-                            alert("Couldn't save picture.")
-                        } else {
-                            alert("Picture saved!")
-                        }
-                    })
-                })
-                reader.readAsDataURL(img.files[0])
-            }
             location.assign('/user.html');
         })
     }).catch((err) => {
