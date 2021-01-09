@@ -304,56 +304,31 @@ const createRecipe = (userID, recipeData, img) => {
         servingAmount: recipeData.servingAmount,
         ingredients: recipeData.ingredients,
         directions: recipeData.directions,
-        img: ''
+        img: {}
     }
     var userToken = localStorage.getItem("token")
     var userid = localStorage.getItem("id")
     if(img.value) {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-            fetchRecipeData.img = reader.result
-            console.log(fetchRecipeData.img)
-            fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
-                method: 'POST',
-                headers: {
-                    "Authorization": "Bearer " + userToken,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(fetchRecipeData)
-            }).then((response) => {
-                response.json().then(function (actualData) {
-                    if ((actualData.status) && actualData.status !== 200) {
-                        console.log('Something is not right with sign up')
-                        console.log(actualData.status)
-                    }
-                    console.log(actualData);
-                    //location.assign('/user.html');
-                })
-            }).catch((err) => {
-                console.log(err)
-            })
-        })
-        reader.readAsDataURL(img.files[0])
+        alert(img)
+        fetchRecipeData.img = img
     }
-    else{
-        fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
-            method: 'POST',
-            headers: {
-                "Authorization": "Bearer " + userToken,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(fetchRecipeData)
-        }).then((response) => {
-            response.json().then(function (actualData) {
-                if ((actualData.status) && actualData.status !== 200) {
-                    console.log('Something is not right with sign up')
-                    console.log(actualData.status)
-                }
-                console.log(actualData);
-                //location.assign('/user.html');
-            })
-        }).catch((err) => {
-            console.log(err)
+    fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
+        method: 'POST',
+        headers: {
+            "Authorization": "Bearer " + userToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(fetchRecipeData)
+    }).then((response) => {
+        response.json().then(function (actualData) {
+            if ((actualData.status) && actualData.status !== 200) {
+                console.log('Something is not right with sign up')
+                console.log(actualData.status)
+            }
+            console.log(actualData);
+            //location.assign('/user.html');
         })
-    }
+    }).catch((err) => {
+        console.log(err)
+    })
 }
