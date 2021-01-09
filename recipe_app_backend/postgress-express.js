@@ -290,55 +290,24 @@ app.post("/api/recipe/", auth, (req, res) => {
             "directions": req.body.directions,
             "uploaded": 'false'
         }
-        if(img.value) {
-            let sql;
-            let params;
-            sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
-            params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
-            db.query(sql, params, (err, response) => {
-                if(err) {
-                    res.status(400).json({
-                        "error": err
-                    });
-                }
-                else{
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        fs.appendFile(`./recipe-images/`, reader.result, (err) => {
-                            if(!err) {
-                                data.uploaded = 'true'
-                            }
-                            res.json({
-                                "message": "success",
-                                "data": data,
-                                "ID": response.rows[0].id
-                            }); 
-                        })
-                    })
-                    reader.readAsDataURL(img.files[0])
-                }
-            })
-        }
-        else {
-            let sql;
-            let params;
-            sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
-            params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
-            db.query(sql, params, (err, response) => {
-                if(err) {
-                    res.status(400).json({
-                        "error": err
-                    });
-                }
-                else{
-                    res.json({
-                        "message": "success",
-                        "data": data,
-                        "ID": response.rows[0].id
-                    }); 
-                }
-            })
-        }
+        let sql;
+        let params;
+        sql = "INSERT INTO recipe (userId, name, type, servingAmount, ingredients, directions) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id";
+        params = [data.userId, data.name, data.type, data.servingAmount, data.ingredients, data.directions];
+        db.query(sql, params, (err, response) => {
+            if(err) {
+                res.status(400).json({
+                    "error": err
+                });
+            }
+            else{
+                res.json({
+                    "message": "success",
+                    "data": data,
+                    "ID": response.rows[0].id
+                }); 
+            }
+        })
     }
 })
 
