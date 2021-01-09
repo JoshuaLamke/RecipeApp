@@ -313,26 +313,47 @@ const createRecipe = (userID, recipeData, img) => {
         reader.addEventListener('load', () => {
             fetchRecipeData.img = reader.result
             console.log(fetchRecipeData.img)
+            fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + userToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(fetchRecipeData)
+            }).then((response) => {
+                response.json().then(function (actualData) {
+                    if ((actualData.status) && actualData.status !== 200) {
+                        console.log('Something is not right with sign up')
+                        console.log(actualData.status)
+                    }
+                    console.log(actualData);
+                    //location.assign('/user.html');
+                })
+            }).catch((err) => {
+                console.log(err)
+            })
         })
         reader.readAsDataURL(img.files[0])
     }
-    fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
-        method: 'POST',
-        headers: {
-            "Authorization": "Bearer " + userToken,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(fetchRecipeData)
-    }).then((response) => {
-        response.json().then(function (actualData) {
-            if ((actualData.status) && actualData.status !== 200) {
-                console.log('Something is not right with sign up')
-                console.log(actualData.status)
-            }
-            console.log(actualData);
-            //location.assign('/user.html');
+    else{
+        fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer " + userToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fetchRecipeData)
+        }).then((response) => {
+            response.json().then(function (actualData) {
+                if ((actualData.status) && actualData.status !== 200) {
+                    console.log('Something is not right with sign up')
+                    console.log(actualData.status)
+                }
+                console.log(actualData);
+                //location.assign('/user.html');
+            })
+        }).catch((err) => {
+            console.log(err)
         })
-    }).catch((err) => {
-        console.log(err)
-    })
+    }
 }
