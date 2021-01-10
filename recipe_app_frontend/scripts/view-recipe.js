@@ -1,3 +1,5 @@
+const { json } = require("body-parser")
+
 const titleElement = document.querySelector('#recipe-name')
 const typeElement = document.querySelector('#recipe-type')
 const servingsElement = document.querySelector('#recipe-servings')
@@ -15,6 +17,31 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
     }
 }).then((response) => {
     response.json().then(function (actualResponse) {
+        let userId = localStorage.getItem('id')
+        let idObj = {
+            userId: userId,
+            recipeId: recipeID
+        }
+        fetch("https://recipe-app-jg.herokuapp.com/api/recipe-image-get"),{
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer " + userToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(idObj)
+        }.then((response) => {
+            if(response.status === 400) {
+                
+            }
+            else{
+                response.json().then((data) => {
+                    imgStr = data.img
+                    let recipeImage = document.getElementById('recipe-img')
+                    recipeImage.setAttribute('src', imgStr)
+                })   
+            }
+        })
+
         if ((actualResponse.status) && actualResponse.status !== 200) {
             console.log('Something is not right')
             console.log(actualResponse.status)

@@ -1,5 +1,6 @@
 //Will load the user page including the recipes that the user has
 const loadUpUserPage = (userID, filters) => {
+    
     recipeList = []
 
     var userToken = localStorage.getItem("token")
@@ -20,6 +21,7 @@ const loadUpUserPage = (userID, filters) => {
         })
     })
     renderRecipes(recipeList, filters)
+
 }
 
 //Will create the DOM for the recipe that is passed in
@@ -303,15 +305,10 @@ const createRecipe = (userID, recipeData, img) => {
         type: recipeData.type,
         servingAmount: recipeData.servingAmount,
         ingredients: recipeData.ingredients,
-        directions: recipeData.directions,
-        img: {}
+        directions: recipeData.directions
     }
     var userToken = localStorage.getItem("token")
     var userid = localStorage.getItem("id")
-    if(img.value) {
-        alert(img)
-        fetchRecipeData.img = img
-    }
     fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
         method: 'POST',
         headers: {
@@ -325,8 +322,28 @@ const createRecipe = (userID, recipeData, img) => {
                 console.log('Something is not right with sign up')
                 console.log(actualData.status)
             }
-            console.log(actualData);
-            //location.assign('/user.html');
+            if(img.value) {
+                const imgObj = {
+                    img: '',
+                    userId: userID,
+                    recipeId: actualData.ID
+                }
+                const reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    imgObj.img = reader.result
+                    fetch("https://recipe-app-jg.herokuapp.com/api/recipe-image/", {
+                        method: 'POST',
+                        headers: {
+                            "Authorization": "Bearer " + userToken,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(imgObj)
+                    }).then(() => {alert('Image sent to server')})
+                    .catch(err => {alert(err)})
+                })
+                reader.readAsDataURL(img.files[0])
+            }
+            location.assign('/user.html');
         })
     }).catch((err) => {
         console.log(err)
