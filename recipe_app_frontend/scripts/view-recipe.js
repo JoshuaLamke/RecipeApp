@@ -20,14 +20,14 @@ fetch('https://recipe-app-jg.herokuapp.com/api/recipes', {
             userId: userId,
             recipeId: recipeID
         }
-        fetch("https://recipe-app-jg.herokuapp.com/api/recipe-image-get"),{
+        fetch("https://recipe-app-jg.herokuapp.com/api/recipe-image-get",{
             method: 'POST',
             headers: {
                 "Authorization": "Bearer " + userToken,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(idObj)
-        }.then((response) => {
+        }).then((response) => {
             if(response.status === 400) {
                 
             }
