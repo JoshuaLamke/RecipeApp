@@ -399,6 +399,7 @@ app.post('/api/recipe-image-get', auth, (req, res) => {
     fs.readFile(`./recipe-images/${userId} ${recipeId}`,'base64', (err, data) => {
         if(err) {
             res.status(400).send({error: 'Image could not be delivered'})
+            return;
         }
         res.json({
             img: data
