@@ -1,5 +1,3 @@
-const { json } = require("body-parser")
-
 const titleElement = document.querySelector('#recipe-name')
 const typeElement = document.querySelector('#recipe-type')
 const servingsElement = document.querySelector('#recipe-servings')
