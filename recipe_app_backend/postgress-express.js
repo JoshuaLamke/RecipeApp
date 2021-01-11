@@ -388,24 +388,6 @@ app.delete("/api/recipes", (req, res) => {
         }
     })
 })
-
-app.post("/api/recipe-image", auth, (req, res) => {
-    imgStr = req.body.img
-    fs.appendFile(`./recipe-images/${req.body.userId} ${req.body.recipeId}`, imgStr, () => {})
-})
-app.post('/api/recipe-image-get', auth, (req, res) => {
-    let userId = req.body.userId
-    let recipeId = req.body.recipeId
-    fs.readFile(`./recipe-images/${userId} ${recipeId}`,'base64', (err, data) => {
-        if(err) {
-            res.status(400).send({error: 'Image could not be delivered'})
-            return;
-        }
-        res.json({
-            img: data
-        })
-    })
-})
 // All other endpoints should give 404 status
 app.use((req, res) => {
     res.status(404);

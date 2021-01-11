@@ -31,7 +31,7 @@ document.querySelector('#new-recipe').addEventListener('submit', (e) => {
             return;
         }
     let userID = localStorage.getItem("id")
-    createRecipe(userID, recipeData, e.target[5])
+    createRecipe(userID, recipeData)
 
 })
 
