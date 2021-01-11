@@ -1,5 +1,8 @@
 const id = location.hash
+const GERARDO_API_KEY = 'fc13712a478843d7b347575dcc0e04c3'
+const JOSHUA_API_KEY = 'bfd57da057f541eeb8feba2547fc5e39'
 const userID = id.split("#").pop()
+
 let recipeData = {
     title: '',
     type: '',
@@ -12,6 +15,119 @@ const typeElement = document.querySelector('#type-bar')
 const servingElement = document.querySelector('#serving-amount-bar')
 const ingredientsElement = document.querySelector('#ingredients-bar')
 const directionsElement = document.querySelector('#directions-bar')
+const searchBar = document.querySelector('#search-recipe-bar')
+const addRecipeButton = document.createElement('button')
+addRecipeButton.textContent = 'Add Recipe'
+
+document.getElementById('search-recipe-button').addEventListener('click', (e) => {
+    e.preventDefault()
+    let search = searchBar.value
+    
+    if(search.trim === '') {
+        alert('Type in the name of a recipe')
+        return
+    }
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&instructionsRequired=true&addRecipeInformation=true&number=10&apiKey=${JOSHUA_API_KEY}`,{
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then((response) => {
+        if(response.status === 402) {
+            fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&instructionsRequired=true&addRecipeInformation=true&number=10&apiKey=${GERARDO_API_KEY}`,{
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+            }).then((response) => {
+                if(response.status === 402) {
+                    alert('No more searches for today! Sorry!')
+                    return;
+                }
+                else if(response.status !== 200) {
+                    alert('something went wrong')
+                    return
+                }
+                else {
+                    response.json().then((data) => {
+                        console.log(data.results)
+                        for(let i = 0; i < 10; i++) {
+                            let button = document.createElement('button')
+                            button.className = 'btn btn-primary'
+                            button.textContent = 'Add Recipe'
+                            button.id = `add-recipe-button-${i+1}`
+                            button.style = 'margin-left: 5px'
+                            button.addEventListener('click', (e) => {
+                                e.preventDefault()
+                                let recipeNum = e.target.id.split('-')[3]
+                                let directions = ''
+                                let ingredients = ''
+                                recipeData.title = data.results[recipeNum-1].title
+                                for(let i = 0; i < data.results[recipeNum-1].analyzedInstructions[0].steps.length; i++) {
+                                    directions = directions + data.results[recipeNum-1].analyzedInstructions[0].steps[i].step
+                                    for(let j = 0; j < data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients.length; j++){
+                                        ingredients = ingredients + data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients[j].name + ','
+                                    }
+                                }
+                                recipeData.directions = directions
+                                let set = new Set(ingredients.split(','))
+                                ingredients = Array.from(set).join(',')
+                                recipeData.ingredients = ingredients
+                                recipeData.type = 'other'
+                                recipeData.servingAmount = data.results[recipeNum-1].servings
+                                let userID = localStorage.getItem("id")
+                                createRecipe(userID, recipeData)
+                            })
+                            document.getElementById(`recipe-${i+1}`).textContent = data.results[i].title
+                            document.getElementById(`recipe-${i+1}`).appendChild(button)
+                            
+                        }
+                    })
+                }
+            })
+        }
+        else if(response.status !== 200) {
+            alert('something went wrong')
+            return
+        }
+        else {
+            response.json().then((data) => {
+                console.log(data.results)
+                for(let i = 0; i < 10; i++) {
+                    let button = document.createElement('button')
+                    button.className = 'btn btn-primary'
+                    button.textContent = 'Add Recipe'
+                    button.id = `add-recipe-button-${i+1}`
+                    button.style = 'margin-left: 5px'
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        let recipeNum = e.target.id.split('-')[3]
+                        let directions = ''
+                        let ingredients = ''
+                        recipeData.title = data.results[recipeNum-1].title
+                        for(let i = 0; i < data.results[recipeNum-1].analyzedInstructions[0].steps.length; i++) {
+                            directions = directions + data.results[recipeNum-1].analyzedInstructions[0].steps[i].step
+                            for(let j = 0; j < data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients.length; j++){
+                                ingredients = ingredients + data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients[j].name + ','
+                            }
+                        }
+                        recipeData.directions = directions
+                        let set = new Set(ingredients.split(','))
+                        ingredients = Array.from(set).join(',')
+                        recipeData.ingredients = ingredients
+                        recipeData.type = 'other'
+                        recipeData.servingAmount = data.results[recipeNum-1].servings
+                        let userID = localStorage.getItem("id")
+                        createRecipe(userID, recipeData)
+                    })
+                    document.getElementById(`recipe-${i+1}`).textContent = data.results[i].title
+                    document.getElementById(`recipe-${i+1}`).appendChild(button)
+                    
+                }
+            })
+        }
+    })
+})
 
 document.querySelector('#new-recipe').addEventListener('submit', (e) => {
     e.preventDefault()
