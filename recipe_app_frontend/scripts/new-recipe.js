@@ -2,6 +2,7 @@ const id = location.hash
 const GERARDO_API_KEY = 'fc13712a478843d7b347575dcc0e04c3'
 const JOSHUA_API_KEY = 'bfd57da057f541eeb8feba2547fc5e39'
 const userID = id.split("#").pop()
+let typeBoolean = false;
 
 let recipeData = {
     title: '',
@@ -51,7 +52,7 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
                 else {
                     response.json().then((data) => {
                         console.log(data.results)
-                        for(let i = 0; i < 10; i++) {
+                        for(let i = 0; i < data.results.length; i++) {
                             let button = document.createElement('button')
                             button.className = 'btn btn-primary'
                             button.textContent = 'Add Recipe'
@@ -63,6 +64,36 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
                                 let directions = ''
                                 let ingredients = ''
                                 recipeData.title = data.results[recipeNum-1].title
+                                if (data.results[recipeNum-1].dishTypes.length != 0) {
+                                    data.results[recipeNum-1].dishTypes.forEach((type) => {
+                                        if (type.toLowerCase() === 'breakfast') {
+                                            recipeData.type = 'Breakfast'
+                                            typeBoolean = true;
+                                        }
+                                        else if (type.toLowerCase() === 'lunch') {
+                                            recipeData.type = 'Lunch'
+                                            typeBoolean = true;
+                                        }
+                                        else if (type.toLowerCase() === 'dinner') {
+                                            recipeData.type = 'Dinner'
+                                            typeBoolean = true;
+                                        }
+                                        else if (type.toLowerCase() === 'dessert') {
+                                            recipeData.type = 'Dessert'
+                                            typeBoolean = true;
+                                        }
+                                        else if (type.toLowerCase() === 'snack') {
+                                            recipeData.type = 'Snack'
+                                            typeBoolean = true;
+                                        }
+                                        else {
+                                            recipeData.type = 'Other'
+                                        }
+                                    })
+                                }
+                                else {
+                                    recipeData.type = 'Other'
+                                }
                                 for(let i = 0; i < data.results[recipeNum-1].analyzedInstructions[0].steps.length; i++) {
                                     directions = directions + data.results[recipeNum-1].analyzedInstructions[0].steps[i].step
                                     for(let j = 0; j < data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients.length; j++){
@@ -73,7 +104,6 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
                                 let set = new Set(ingredients.split(','))
                                 ingredients = Array.from(set).join(',')
                                 recipeData.ingredients = ingredients
-                                recipeData.type = 'other'
                                 recipeData.servingAmount = data.results[recipeNum-1].servings
                                 let userID = localStorage.getItem("id")
                                 createRecipe(userID, recipeData)
@@ -93,7 +123,7 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
         else {
             response.json().then((data) => {
                 console.log(data.results)
-                for(let i = 0; i < 10; i++) {
+                for(let i = 0; i < data.results.length; i++) {
                     let button = document.createElement('button')
                     button.className = 'btn btn-primary'
                     button.textContent = 'Add Recipe'
@@ -105,6 +135,39 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
                         let directions = ''
                         let ingredients = ''
                         recipeData.title = data.results[recipeNum-1].title
+                        if (data.results[recipeNum-1].dishTypes.length != 0) {
+                            data.results[recipeNum-1].dishTypes.forEach((type) => {
+                                if (typeBoolean) {
+                                    return
+                                }
+                                if (type.toLowerCase() === 'breakfast') {
+                                    recipeData.type = 'Breakfast'
+                                    typeBoolean = true;
+                                }
+                                else if (type.toLowerCase() === 'lunch') {
+                                    recipeData.type = 'Lunch'
+                                    typeBoolean = true;
+                                }
+                                else if (type.toLowerCase() === 'dinner') {
+                                    recipeData.type = 'Dinner'
+                                    typeBoolean = true;
+                                }
+                                else if (type.toLowerCase() === 'dessert') {
+                                    recipeData.type = 'Dessert'
+                                    typeBoolean = true;
+                                }
+                                else if (type.toLowerCase() === 'snack') {
+                                    recipeData.type = 'Snack'
+                                    typeBoolean = true;
+                                }
+                                else {
+                                    recipeData.type = 'Other'
+                                }
+                            })
+                        }
+                        else {
+                            recipeData.type = 'Other'
+                        }
                         for(let i = 0; i < data.results[recipeNum-1].analyzedInstructions[0].steps.length; i++) {
                             directions = directions + data.results[recipeNum-1].analyzedInstructions[0].steps[i].step
                             for(let j = 0; j < data.results[recipeNum-1].analyzedInstructions[0].steps[i].ingredients.length; j++){
@@ -115,7 +178,6 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
                         let set = new Set(ingredients.split(','))
                         ingredients = Array.from(set).join(',')
                         recipeData.ingredients = ingredients
-                        recipeData.type = 'other'
                         recipeData.servingAmount = data.results[recipeNum-1].servings
                         let userID = localStorage.getItem("id")
                         createRecipe(userID, recipeData)
@@ -165,13 +227,6 @@ document.querySelector("#cancel").addEventListener("submit", (e) => {
 //     saveNotes(notes)
 // })
 
-//Set up event listener for the remove button...
-// document.querySelector('#remove-note').addEventListener('click', (e) => {
-//     removeNote(note.id)
-//     saveNotes(notes)
-//     location.assign('/index.html')
-// })
-
 // Will listen in the window in other tabs and notice changes in the other tabs...
 // window.addEventListener('storage', (e) => {
 //     if (e.key === 'notes'){
@@ -187,17 +242,3 @@ document.querySelector("#cancel").addEventListener("submit", (e) => {
 //         dateElement.textContent = `Last edited on ${dayjs(note.updatedAt).format('MMMM D, YYYY H:m:s')}`
 //     }
 // })
-// fetch("https://recipe-app-jg.herokuapp.com/api/recipe/", {
-//         method: 'POST',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(recipeData)
-//     }).then((response) => {
-//         response.json().then(function (actualData) {
-//             if ((actualData.status) && actualData.status !== 200) {
-//                 console.log('Something is not right with sign up')
-//                 console.log(actualData.status)
-//             }
-//             console.log(actualData)
-            
-//         })
-//     })
