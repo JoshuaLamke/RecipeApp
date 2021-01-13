@@ -18,6 +18,7 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         response.json().then(function(data1) {
             localStorage.setItem("id", data1["User Info"].data.id)
             localStorage.setItem("token", data1["User Info"].Token)
+            localStorage.setItem('counter', 0)
             location.assign(`/user.html`)
         })
     }).catch((err) => { 
