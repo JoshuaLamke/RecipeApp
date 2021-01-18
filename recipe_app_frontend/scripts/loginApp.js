@@ -18,7 +18,18 @@ document.querySelector('#login-form').addEventListener('submit', (e) => {
         response.json().then(function(data1) {
             localStorage.setItem("id", data1["User Info"].data.id)
             localStorage.setItem("token", data1["User Info"].Token)
-            localStorage.setItem('counter', 0)
+            if (localStorage.getItem('counter') === null) {
+                localStorage.setItem('counter', 0)
+            }
+            let time = new Date();
+            let lastEntered = Math.floor(time.getTime() / 86400000) //Gets the milliseconds and returns it in days rounded down
+            const prevLastEntered = localStorage.getItem('lastEntered')
+            //Compares the two search times, if the current one is a day later, it will reset the counter to 0
+            if (lastEntered > prevLastEntered) {
+                counter = 0;
+                localStorage.setItem('counter', counter)
+            }
+            localStorage.setItem('lastEntered', lastEntered)
             location.assign(`/user.html`)
         })
     }).catch((err) => { 

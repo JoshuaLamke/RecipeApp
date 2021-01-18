@@ -7,6 +7,12 @@ let typeBoolean = false;
 let counter = localStorage.getItem('counter')
 counter = parseInt(counter, 10);
 
+let userCounter = document.createElement('p')
+userCounter.id = 'userCounter'
+userCounter.textContent = `You have ${20-counter} searches left for today!`
+document.querySelector('#userSearchCount').appendChild(userCounter)
+
+let time = new Date();
 let recipeData = {
     title: '',
     type: '',
@@ -25,8 +31,13 @@ addRecipeButton.textContent = 'Add Recipe'
 
 document.getElementById('search-recipe-button').addEventListener('click', (e) => {
     e.preventDefault()
+    if (counter >= 20) {
+        alert('You have reached the maximum number of searches allowed daily! Please continue to search tomorrow! Thank you for understanding!')
+        return
+    }
     counter += 1
     localStorage.setItem('counter', counter)
+    document.querySelector('#userCounter').textContent = `You have ${20-counter} searches left for today!`
     let search = searchBar.value
     if(search.trim === '') {
         alert('Type in the name of a recipe')
@@ -38,8 +49,6 @@ document.getElementById('search-recipe-button').addEventListener('click', (e) =>
     else {
         API_KEY = GERARDO_API_KEY;
     }
-    console.log(API_KEY)
-    debugger
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&instructionsRequired=true&addRecipeInformation=true&number=10&apiKey=${API_KEY}`,{
         method: 'GET',
         headers: {
